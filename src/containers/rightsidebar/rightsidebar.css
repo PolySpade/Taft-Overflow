@@ -1,0 +1,8 @@
+.rightsidebar__container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.sidebarsection__container{
+    margin: 1rem 0rem;
+}

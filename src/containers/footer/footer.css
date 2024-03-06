@@ -1,0 +1,20 @@
+.footer__container{
+    background-color: var(--base-color);
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer__container img{
+    height: 100px;
+}
+
+.footer__container p{
+    padding-top: 2rem;
+    font-size: 8px;
+    font-family: var(--font-family);
+    color: white;
+}

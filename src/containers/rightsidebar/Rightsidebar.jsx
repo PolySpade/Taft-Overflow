@@ -1,9 +1,16 @@
 import React from 'react'
 import './rightsidebar.css';
+import {Sidebarsection} from '../../components';
+
 
 const Rightsidebar = () => {
   return (
-    <div>Right_sidebar</div>
+    <div className='rightsidebar__container section__padding'>
+      <Sidebarsection />
+      <Sidebarsection />
+      <Sidebarsection />
+    </div>
+    
   )
 }
 

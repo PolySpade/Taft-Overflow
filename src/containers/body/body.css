@@ -1,7 +1,5 @@
 .body__container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    justify-content: flex-start;
 }
