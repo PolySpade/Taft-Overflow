@@ -1,0 +1,41 @@
+.searchbar__form{
+    width: 100%;
+    min-width: 533px;
+    max-width: 700px;
+    height: 30px;
+    background: var(--bar-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5rem;
+}
+
+
+.searchbar__form input{
+    background: transparent;
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-family: var(--font-family);
+}
+
+.searchbar__form button img{
+    width: 19px;
+    height: 19px;
+}
+
+.searchbar__form button{
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding-top: 3px;
+    margin-right: 8px;
+    align-items: center;
+}
+
+::placeholder{
+    color: grey;
+    font-family: var(--font-family);
+}
