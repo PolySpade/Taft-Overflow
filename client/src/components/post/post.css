@@ -1,12 +1,13 @@
 .post__container{
     padding: 1rem;
     margin: 1rem 0rem;
-    width: 1088px;
     max-width: 1088px;
-    min-width: 500px;
+    min-width: 300px;
+    width: 100%;
     background-color: var(--base-color);
     border-radius: 15px;
     max-height: 500px;
+    min-height: 150px;
     overflow-y: hidden;
     position: relative;
 }
