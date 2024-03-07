@@ -1,12 +1,16 @@
 import React from 'react'
 import './body.css';
-import {Post} from '../../components/index';
+import {Post, Profile_info, Profile_recents} from '../../components/index';
 
 
 const Body = () => {
   return (
     <div className='body__container section__padding'>
-      <Post></Post>
+      <Profile_info></Profile_info>
+      <div className='body__container-recents'>
+      <Profile_recents></Profile_recents>
+      <Profile_recents></Profile_recents>
+      </div>
     </div>
 
   )
