@@ -11,7 +11,7 @@ function App() {
     <div className="home__container">
       <Header></Header>
       <div className="home__container-body">
-        <Leftsidebar></Leftsidebar> 
+        <Leftsidebar></Leftsidebar>
         <Body></Body>
         <Rightsidebar></Rightsidebar>
       </div>

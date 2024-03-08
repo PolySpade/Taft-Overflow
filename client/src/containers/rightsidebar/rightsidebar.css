@@ -1,6 +1,6 @@
 .rightsidebar__container{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     flex-direction: column;
 }
 .sidebarsection__container{
