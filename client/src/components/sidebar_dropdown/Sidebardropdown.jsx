@@ -8,8 +8,8 @@ function clickMenu(id) {
 }
 
 const Sidebardropdown = ({title,contents,tag}) => {
-  const listItems = contents.map(content =>
-    <li><a href={tag + content}>{tag + content}</a></li>
+  const listItems = contents.slice(0,10).map((content, index) =>
+    <li key={index}><a href={tag+content.name}>{tag+content.name}</a></li>
   );
   return (
     <div className='sidebardropdown'>
