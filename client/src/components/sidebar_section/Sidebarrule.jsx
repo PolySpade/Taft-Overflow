@@ -1,6 +1,7 @@
 import React from 'react'
 import './sidebarsection.css';
 import law from '../../assets/icons/law.svg';
+import bullet from '../../assets/icons/bullet.svg';
 const Sidebarrule = () => {
   return (
     <div className='sidebarsection__container'>
@@ -9,8 +10,14 @@ const Sidebarrule = () => {
         <p>Rules</p>
       </div>
       <div className='sidebarsection__contents'>
-        <a href='#'> Test </a>
-        <a href='#'> Test </a>
+      <div>
+        <img src={bullet} className='sidebarsection__bullet'></img>
+        <a href='#'>Test</a>
+        <div>
+        <img src={bullet} className='sidebarsection__bullet'></img>
+        <a href='#'>Test</a>
+        </div>
+        </div>
       </div>
     </div>
   )
