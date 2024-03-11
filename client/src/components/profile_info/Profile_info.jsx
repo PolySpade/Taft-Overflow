@@ -1,11 +1,12 @@
 import React from 'react'
 import './profile_info.css';
+import IceSpade_pfp from '../../assets/images/IceSpade_pfp.png';
 
 const Profile_info = ({imgUrl, name, action}) => {
   return (
     <div className='profile_info__container'>
       <div className='profile_info__image'>
-        <img src=''></img>
+        <img src={IceSpade_pfp} alt='icespadepfp'></img>
       </div>
       <div className='profile_info__textcontainer'>
       <div className='profile_info__details'>
