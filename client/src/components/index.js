@@ -6,3 +6,5 @@ export { default as Navsearchbar} from './nav_searchbar/Navsearchbar';
 export { default as Footerlinks} from './footer_links/Footer_links';
 export { default as Profile_info} from './profile_info/Profile_info';
 export { default as Profile_recents} from './profile_recents/Profile_recents';
+export { default as Create_post} from './create_post/Create_post';
+export { default as Create_postheader} from './create_postheader/Create_postheader';

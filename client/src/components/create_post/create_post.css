@@ -1,0 +1,53 @@
+.create-post-container {
+    background-color: #232931;
+    color: white;
+    border-radius: 15px;
+    padding: 2rem;
+    width: 100%; 
+    margin: auto;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title-input,
+  .course-select,
+  .topic-input,
+  .text-input {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background: #1B1F24;
+    color: white;
+    border: none;
+    border-radius: 15px;
+  }
+  
+  .course-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; /* This is to style the dropdown to look more modern and flat */
+  }
+  
+  .topic-input-container {
+    position: relative;
+  }
+  
+  .text-input {
+    height: 150px;
+  }
+  
+  .post-button {
+    padding: 0.5rem 1rem;
+    background-color: #4ECCA3;
+    color: black;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    align-self: flex-end;
+    margin-top: 1rem;
+  }
+  
