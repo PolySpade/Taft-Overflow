@@ -7,7 +7,7 @@ import {Sidebarmembers} from '../../components';
 const Rightsidebar = () => {
   return (
     <div className='rightsidebar__container section__padding'>
-
+      <Sidebarsection/>
       <Sidebarrules />
       <Sidebarmembers />
     </div>
