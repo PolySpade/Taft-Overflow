@@ -5,40 +5,76 @@
     padding: 2rem;
     width: 100%; 
     margin: auto;
-  }
+}
+
+.create-post-header {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 25px;
+}
   
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
+.create-post-topic {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  padding-bottom: 1rem;
+}
+
+.form-group-row{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem; 
+}
+
+.form-group-title {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  width: 50%;
+}
+
+.form-group-course {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  width: 50%;
+}
   
-  .title-input,
-  .course-select,
-  .topic-input,
-  .text-input {
+.form-group-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.title-input,
+.course-select,
+.topic-input,
+.text-input {
+    width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
     background: #1B1F24;
     color: white;
     border: none;
     border-radius: 15px;
-  }
+}
   
-  .course-select {
+.course-select {
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none; /* This is to style the dropdown to look more modern and flat */
-  }
+    appearance: none;
+}
   
-  .topic-input-container {
+.topic-input-container {
     position: relative;
-  }
+}
   
-  .text-input {
+.text-input {
     height: 150px;
-  }
+}
   
-  .post-button {
+.post-button {
     padding: 0.5rem 1rem;
     background-color: #4ECCA3;
     color: black;
@@ -49,5 +85,4 @@
     border: none;
     align-self: flex-end;
     margin-top: 1rem;
-  }
-  
+}

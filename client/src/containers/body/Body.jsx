@@ -21,7 +21,9 @@ const Body = () => {
   return (
     <div className='body__container section__padding'>
       <Create_postheader></Create_postheader>
-      <Create_post></Create_post>
+      <div className='body__container-recents'>
+        <Create_post></Create_post>
+      </div>
     </div>
   )
 }
