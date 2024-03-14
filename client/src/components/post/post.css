@@ -122,7 +122,7 @@
 
 .post__footer{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     position: absolute;
     bottom: 0;
     right:0;
@@ -132,6 +132,18 @@
 }
 .post__footer-tags, .post__footer-date{
     margin: 0.5rem 1rem;
+}
+
+.post__footer-tags{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.post__footer-date{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .post__footer-tags a{
@@ -161,6 +173,8 @@
     align-items: center;
     border: none;
     background-color: transparent;
+    cursor: pointer;
+    width: 100%;
 }
 
 .post__footer-view p{

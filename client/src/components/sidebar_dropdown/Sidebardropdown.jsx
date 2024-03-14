@@ -1,15 +1,15 @@
 import React from 'react'
 import './sidebardropdown.css';
 import dropdown from '../../assets/icons/dropdown.svg';
-
+import {Link} from 'react-router-dom';
 
 function clickMenu(id) {
   document.getElementById(id).classList.toggle("show");
 }
 
-const Sidebardropdown = ({title,contents,tag}) => {
+const Sidebardropdown = ({title,contents,tag, action}) => {
   const listItems = contents.slice(0,10).map((content, index) =>
-    <li key={index}><a href={tag+content.name}>{tag+content.name}</a></li>
+    <li key={index}><Link to={action+content.name}>{tag+content.name}</Link></li>
   );
   return (
     <div className='sidebardropdown'>

@@ -3,12 +3,15 @@ const Schema = mongoose.Schema
 
 //user profile schema
 const userSchema = new Schema({
-    id: {type: Number},
     name: {type:String},
     email: {type:String, lowercase:true},
-    school_id: {type:Number},
+    school_id: {type:Number, unique: true},
     degree: {type:String, uppercase:true},
     aboutme: {type:String},
+    profile_img: { 
+        data: {type: Buffer}, 
+        contentType: {type: String}
+    },
     entryDate: {type:Date, default:Date.now}
 })
 
@@ -17,20 +20,20 @@ const topicSchema = new Schema({
 })
 
 const courseSchema = new Schema({
-    name: {type:String},
+    name: {type:String, unique: true, uppercase: true},
     entryDate: {type:Date, default:Date.now}
 })
 
 //post schema
 const postSchema = new Schema({
-    id: {type:Number},
-    type: {type:String},
-    user_id: {type:Number},
+    type: {type:String}, //announcement, regular
+    user_id: {type: Schema.Types.ObjectId, ref:'Users'},
     title: {type:String},
     content: {type:String},
     entryDate: {type:Date, default:Date.now},
-    topic_name: {type: [String],default:['general']},
-    course_name: {type: String, default:'general'}
+    topic_ids: [{type: Schema.Types.ObjectId, ref: 'Topics'}],
+    course_id: {type: Schema.Types.ObjectId, ref:'Courses'},
+    comment_status: {type:Boolean, default:true}
 })
 
 const commentSchema = new Schema({
@@ -54,11 +57,15 @@ const likeSchema = new Schema({
 const Users = mongoose.model('Users',userSchema,'users')
 const Topics = mongoose.model('Topics',topicSchema,'topics')
 const Courses = mongoose.model('Courses',courseSchema,'courses')
+const Posts = mongoose.model('Posts',postSchema,'posts')
 const mySchemas = {
     'Users':Users,
     'Topics':Topics,
-    'Courses':Courses
+    'Courses':Courses,
+    'Posts':Posts
 }
+
+
 
 
 

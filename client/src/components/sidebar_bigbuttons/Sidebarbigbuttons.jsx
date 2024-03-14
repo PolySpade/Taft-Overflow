@@ -1,12 +1,13 @@
 import React from 'react'
 import './sidebarbigbuttons.css';
+import {Link} from 'react-router-dom'
 
 const Sidebarbigbuttons = ({imgUrl, name, action}) => {
   return (
-    <button className='sidebarbigbutton' onClick={action}>
+    <Link className='sidebarbigbutton' to={action}>
         <img src={imgUrl}></img>
         <p>{name}</p>
-    </button>
+    </Link>
   )
 }
 

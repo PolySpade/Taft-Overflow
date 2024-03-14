@@ -22,6 +22,36 @@ function createGetRoute(path, schema) {
 createGetRoute('/api/topics', 'Topics')
 createGetRoute('/api/courses', 'Courses')
 
+router.get('/api/posts', async (req, res) => {
+  try {
+      // Ensure the schema exists before trying to use it
+      if (!schemas.Posts) {
+          throw new Error(`Schema Posts not found`);
+      }
+      const result = await schemas.Posts.find()
+                      .populate({
+                        path: 'topic_ids', 
+                        select: 'name'
+                      })
+                      .populate({
+                        path: 'course_id', 
+                        select: 'name'
+                      })
+                      .populate({
+                        path: 'user_id', 
+                        select: 'name profile_img'
+                      });
+                      
+      res.json(result);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+});
+
+
+
+//createGetRoute('/api/posts','Posts')
+
 /*
 router.get('/api/topics', async (req,res) => {
   try{
