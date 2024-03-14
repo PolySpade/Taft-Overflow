@@ -226,6 +226,7 @@
   background-color: #1b1f24;
   border: none;
   color: white;
+  resize: none;
 }
 
 .submit-button {
