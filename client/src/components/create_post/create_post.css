@@ -58,6 +58,8 @@
     color: white;
     border: none;
     border-radius: 15px;
+    resize: none;
+    padding: 1rem;
 }
   
 .course-select {

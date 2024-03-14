@@ -16,7 +16,7 @@ const Body = () => {
   )
 }
 */
-//* CREATE POST PAGE
+// CREATE POST PAGE
 const Body = () => {
   return (
     <div className='body__container section__padding'>
@@ -27,5 +27,6 @@ const Body = () => {
     </div>
   )
 }
+
 
 export default Body
