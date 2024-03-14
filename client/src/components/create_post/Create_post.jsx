@@ -3,6 +3,8 @@ import { Editor, EditorState, RichUtils, getDefaultKeyBinding } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import bold from '../../assets/icons/bold.svg';
 import italic from '../../assets/icons/italic.svg';
+import underline from '../../assets/icons/underline.svg';
+import strikethrough from '../../assets/icons/strikethrough.svg';
 import './create_post.css';
 
 const Create_post = ({ imgUrl, name, action }) => {
@@ -55,13 +57,19 @@ const Create_post = ({ imgUrl, name, action }) => {
                 </div>
             </div>
             <div className='form-group-column'>
-                <h1 className='create-post-topic'>Choose topics (separated by comma)</h1>
+                <h1 className='create-post-topic'>Enter topics in the format [#topic]</h1>
                 <div className="topic-input-container">
                     <input type="text" className="topic-input" placeholder="input topics here" />
                 </div>
                 <div className="editor-toolbar">
                     <button onMouseDown={(e) => styleButtonHandler(e, 'BOLD')}>
                         <img src={bold} alt="Bold" />
+                    </button>
+                    <button onMouseDown={(e) => styleButtonHandler(e, 'UNDERLINE')}>
+                        <img src={underline} alt="Underline" />
+                    </button>
+                    <button onMouseDown={(e) => styleButtonHandler(e, 'STRIKETHROUGH')}>
+                        <img src={strikethrough} alt="Strikethrough" />
                     </button>
                     <button onMouseDown={(e) => styleButtonHandler(e, 'ITALIC')}>
                         <img src={italic} alt="Italic" />
