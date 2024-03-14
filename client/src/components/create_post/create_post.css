@@ -55,6 +55,7 @@
     padding: 0.5rem;
     margin-bottom: 1rem;
     background: #1B1F24;
+    font-family: var(--font-family);
     color: white;
     border: none;
     border-radius: 15px;
@@ -87,4 +88,28 @@
     border: none;
     align-self: flex-end;
     margin-top: 1rem;
+}
+/* ... other styles ... */
+
+.editor-toolbar {
+  margin-bottom: 10px;
+}
+
+.editor-toolbar button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background: #4ECCA3;
+  color: black;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Draft.js specific styling */
+.text-input .DraftEditor-root {
+  min-height: 150px;
+}
+
+.text-input .public-DraftEditor-content {
+  min-height: 150px;
 }
