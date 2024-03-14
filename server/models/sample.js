@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const schemas = require('../models/schemas')
 
 //Sample Single Data
+
 const topics = new schemas.Topics(
     {name:'id119'}
 )
@@ -14,6 +15,36 @@ async function data_save(data){
     }
 }
 //data_save(topics)
+
+function multiple_data_save(schemaName, topics_data) {
+    const Schema = schemas[schemaName];
+    if (!Schema) {
+        console.error('Schema not found:', schemaName);
+        return;
+    }
+    for (const data of topics_data) {
+        const newTopic = new Schema(data); 
+        data_save(newTopic);
+    }
+}
+
+async function findObjectID(schemaName,topicName) {
+    const Schema = schemas[schemaName];
+    try {
+        const topic = await Schema.findOne({ name: topicName }).exec();
+        if (topic) {
+            console.log('Found topic ObjectId:', topic._id);
+            return topic._id;
+        } else {
+            console.log('No topic found with that name');
+            return null;
+        }
+    } catch (err) {
+        console.error('Error finding topic:', err);
+        return null;
+    }
+}
+
 
 //Sample Array Data
 const topics_data = [
@@ -45,6 +76,22 @@ const users_data = [
         aboutme: 'A ccs student too'
     }
 ]
+
+multiple_data_save('Topics',topics_data)
+multiple_data_save('Courses',courses_data)
+multiple_data_save('Users',users_data)
+
+
+
+
+
+console.log(findObjectID('Topics','id119'))
+
+
+
+
+
+
 /*
 const postSchema = new Schema({
     type: {type:String}, //announcement, regular
@@ -57,6 +104,8 @@ const postSchema = new Schema({
     comment_status: {type:Boolean, default:true}
 })
 */
+
+/*
 
 const posts_data = [
     {
@@ -77,24 +126,12 @@ const posts_data = [
     }
 ]
 
+*/
 
 
 
-function multiple_data_save(schemaName, topics_data) {
-    const Schema = schemas[schemaName];
-    if (!Schema) {
-        console.error('Schema not found:', schemaName);
-        return;
-    }
-    for (const data of topics_data) {
-        const newTopic = new Schema(data); 
-        data_save(newTopic);
-    }
-}
 
 
 //save
-multiple_data_save('Topics',topics_data)
-multiple_data_save('Courses',courses_data)
-multiple_data_save('Users',users_data)
-multiple_data_save('Posts',posts_data)
+
+//multiple_data_save('Posts',posts_data)
