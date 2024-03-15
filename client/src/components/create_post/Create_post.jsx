@@ -80,7 +80,8 @@ const Create_post = ({ imgUrl, name, action }) => {
             .then(response => {
                 // Handle success
                 console.log(response.data);
-                // Optionally reset the form or redirect the user
+                alert("Post created successfully!");
+                window.location.href = "/";
             })
             .catch(error => {
                 // Handle error
