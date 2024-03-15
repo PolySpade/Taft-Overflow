@@ -1,6 +1,9 @@
 import React from 'react'
 import './sidebarsection.css';
 import announcement from '../../assets/icons/announcement.svg';
+import {Link} from 'react-router-dom';
+
+
 const Sidebarsection = ({header,icon}) => {
   return (
     <div className='sidebarsection__container'>
@@ -9,8 +12,7 @@ const Sidebarsection = ({header,icon}) => {
         <p>{header}</p>
       </div>
       <div className='sidebarsection__contents'>
-        <a href='#'> Test </a>
-        <a href='#'> Test </a>
+        <Link href='#'> Test </Link>
       </div>
     </div>
   )

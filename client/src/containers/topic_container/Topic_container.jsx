@@ -29,7 +29,9 @@ const Topic_container = () => {
       <div className='topic__header-container'><div className='topic__header-header'>Topic:</div><div className='topic__header-tag'>{id}</div></div>
       
       <div className='rectangleline'></div>
+      <div className='topic__contents'>
       {Posts}
+      </div>
     </div>
   )
 }

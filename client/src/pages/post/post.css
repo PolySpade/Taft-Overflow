@@ -1,0 +1,6 @@
+.post__container-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--background-color);    
+}

@@ -5,3 +5,7 @@ export { default as Post} from './post/Post';
 export { default as Navsearchbar} from './nav_searchbar/Navsearchbar';
 export { default as Footerlinks} from './footer_links/Footer_links';
 export { default as Router} from './router/Router';
+export { default as Announcement_section} from './announcement_section/Announcement_section';
+export { default as hottopics_section} from './hottopics_section/Hottopics_section';
+export { default as Post_full} from './post_full/Post_full';
+export { default as Create_post} from './create_post/Create_post';

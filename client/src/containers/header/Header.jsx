@@ -2,6 +2,7 @@ import React from 'react'
 import './header.css';
 import { Navsearchbar } from '../../components/';
 import { logo_full,menu,messages,notifications,profile,createpost } from './imports';
+import { Link } from "react-router-dom";
 
 function clickMenu(id) {
     document.getElementById(id).classList.toggle("show");
@@ -20,20 +21,20 @@ const Header = () => {
         <div className='navbar__buttons-dropdown'>
           <button type="button" onClick={() => clickMenu("navbar__menu_dropdown")}><img src={menu}></img></button>
           <div id='navbar__menu_dropdown' className='navbar__buttons-dropdown_content scale-up-tr'>
-            <a href="#">View Courses</a>
-            <a href="#">View Topics</a>
+            <Link to='/courses'>View Courses</Link>
+            <Link to='/topics'>View Topics</Link>
           </div>
         </div>
-        <button type="button"><img src={messages}></img></button>
-        <button type="button"><img src={notifications}></img></button>
-        <button type="button"><img src={createpost}></img></button>
+        {/* <button type="button"><img src={messages}></img></button>
+        <button type="button"><img src={notifications}></img></button> */}
+        <Link to='/createpost'><button type="button"><img src={createpost}></img></button></Link>
         <div className='navbar__buttons-dropdown'>
           <button type="button" onClick={() => clickMenu("navbar__profile_dropdown")}><img src={profile}></img></button>
           <div id='navbar__profile_dropdown' className='navbar__buttons-dropdown_content scale-up-tr'>
-            <a href="#">View Profile</a>
-            <a href="#">Account</a>
+            <Link to="/profile">View Profile</Link>
+            {/* <a href="#">Account</a>
             <a href="#">Settings</a>
-            <a href="#">Logout</a>
+            <a href="#">Logout</a> */}
           </div>
         </div>  
       </div>

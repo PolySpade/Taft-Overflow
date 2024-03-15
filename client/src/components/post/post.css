@@ -138,12 +138,16 @@
     display: flex;
     justify-content: flex-start;
     width: 100%;
+    align-items: center;
 }
 
 .post__footer-date{
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    font-size: 13px;
+    align-items: center;
+    font-family: var(--font-family);
 }
 
 .post__footer-tags a{
@@ -175,6 +179,7 @@
     background-color: transparent;
     cursor: pointer;
     width: 100%;
+    text-decoration: none;
 }
 
 .post__footer-view p{

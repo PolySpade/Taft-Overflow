@@ -43,7 +43,7 @@ const Leftsidebar = () => {
       <Sidebarbigbuttons imgUrl={bookmark} name='Bookmarks' action={'/bookmarks'}/>
       <Sidebardropdown title='Topics' contents={topics} tag='#' action='/topics/'></Sidebardropdown>
       <div className='rectangleline'></div>
-      <Sidebardropdown title='Courses' contents={courses} tag='cc/' action='/courses/'></Sidebardropdown>
+      <Sidebardropdown title='Courses' contents={courses} tag='c/' action='/courses/'></Sidebardropdown>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import './post.css';
 import {profile,dropdown, upvote_highlight,downvote_highlight,downvote_none,upvote_none} from './imports';
 import study from '../../assets/images/study.jpg';
+import {Link} from 'react-router-dom';
 
 function formatDate(date) {
   return new Date(date).toLocaleDateString("en-US", {
@@ -17,18 +18,18 @@ function formatDate(date) {
 
 const Post = ({contents}) => {
   
-
+  const post_id = contents._id;
   const title = contents.title;
   const content = contents.content;
   const date = formatDate(contents.entryDate);
-  const course_id = contents.course_id.name;
+  const course_ids = contents.course_id;
   const username = contents.user_id.name;
   const profile_image = contents.user_id.profile_img;
   const type = contents.type;
   const topic_ids = contents.topic_ids;
 
   const query_tags = topic_ids.map((content, index) => 
-    <a href={'/topics/'+content.name}>{'#'+content.name}</a>
+    <Link key={index} to={'/topics/'+content.name}>{'#'+content.name}</Link>
   );
 
 
@@ -40,10 +41,10 @@ const Post = ({contents}) => {
           <div className='post__footer-tags'>
             {query_tags}
           </div>
-          <button className='post__footer-view'>
+          <Link className='post__footer-view' to={'/posts/'+ post_id}>
             <img src={dropdown}></img>
             <p>View more</p>
-          </button>
+          </Link>
           <div className='post__footer-date'>
             <p>{date}</p>
           </div>
@@ -59,7 +60,7 @@ const Post = ({contents}) => {
         </div>
         <div className='post__location'>
           <p>Posted in </p>
-          <a href='#'>c/{course_id}</a>
+          <Link to={'/courses/'+ course_ids.name}>c/{course_ids.name}</Link>
         </div>
         <div className='post__votes'>
           <button class='post__votes-upvote'><img src={upvote_none} alt='upvote'></img></button>
