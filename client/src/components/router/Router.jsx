@@ -4,7 +4,7 @@ import { BrowserRouter,Routes, Route, Outlet } from 'react-router-dom'
 
 import {Header,Footer} from '../../containers/index';
 
-import { Home, Topics, Topic,Posts, Post, Popular, Bookmarks, Courses, Course, Createpost } from '../../pages/index';
+import { Home, Topics, Topic,Posts, Post, Popular, Bookmarks, Courses, Course, Createpost, Profile } from '../../pages/index';
 
 import './router.css'
 
@@ -37,7 +37,7 @@ const Router = () => {
                         <Route path='/courses/:id' element={<Course/>}/>
                         <Route path='/createpost' element={<Createpost/>}/>
                         <Route path='*' element={<Home/>} />
-                        
+                        <Route path='/profile/:id' element={<Profile/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

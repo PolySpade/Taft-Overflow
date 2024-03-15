@@ -11,3 +11,4 @@ export { default as Post_full_container} from './post_full_container/Post_full_c
 export { default as Courses_container} from './courses_container/Courses_container';
 export { default as Course_container} from './course_container/Course_container';
 export { default as Create_post_container} from './create_post_container/Create_post_container';
+export { default as Profile_container} from './profile_container/Profile_container';

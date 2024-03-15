@@ -129,19 +129,23 @@ const users_data = [
         username: 'admin',
         name: 'admin',
         email: 'admin@dlsu.edu.ph',
-        school_id: 00000000,
+        school_id: 0,
+        degree: 'ADMIN',
         aboutme: 'Admin'
     }
 ]
-/*
 multiple_data_save('Topics',topics_data)
 multiple_data_save('Courses',courses_data)
 multiple_data_save('Users',users_data)
-prepareAndSavePostsData()
-*/
+
+
+function delay(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 async function prepareAndSavePostsData() {
     try {
+        await delay(5000);
         // Resolve all necessary ObjectIds before creating the posts_data
         // User Identifiers
         const userId_AtorniPulpul = await findObjectID('Users', 'username', 'AtorniPulpul');
@@ -408,6 +412,7 @@ async function prepareAndSavePostsData() {
     }
 }
 
+//prepareAndSavePostsData()
 //multiple_data_save('Posts',posts_data)
 
 

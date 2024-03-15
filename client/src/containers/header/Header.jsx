@@ -31,7 +31,7 @@ const Header = () => {
         <div className='navbar__buttons-dropdown'>
           <button type="button" onClick={() => clickMenu("navbar__profile_dropdown")}><img src={profile}></img></button>
           <div id='navbar__profile_dropdown' className='navbar__buttons-dropdown_content scale-up-tr'>
-            <Link to="/profile">View Profile</Link>
+            <Link to="/profile/IceSpade">View Profile</Link>
             {/* <a href="#">Account</a>
             <a href="#">Settings</a>
             <a href="#">Logout</a> */}

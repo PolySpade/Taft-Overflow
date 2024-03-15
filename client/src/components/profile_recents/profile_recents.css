@@ -1,0 +1,24 @@
+.profile_recents__container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: var(--base-color);
+    width: 100%;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.profile_recents__container-text {
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+}

@@ -23,7 +23,6 @@ function formatDate(date) {
 
 
 const Post_full = ( {contents}) => {
-  //console.log(contents._id);
 
 
   const post_full_id = contents._id;
@@ -31,7 +30,7 @@ const Post_full = ( {contents}) => {
   const content = contents.content;
   const date = formatDate(contents.entryDate);
   const course_id = contents.course_id.name;
-  const username = contents.user_id.name;
+  const username = contents.user_id.username;
   const profile_image = contents.user_id.profile_img;
   const type = contents.type;
   const topic_ids = contents.topic_ids;
@@ -46,12 +45,14 @@ const Post_full = ( {contents}) => {
 
     <div class="post-header">
       <img class="post-header__profile-pic" src={icon} alt="Profile Pic" />
-      <div class="post-header__username">{username}</div>
+      <div class="post-header__username">
+        <Link to={'/profile/'+username}>{username}</Link>
+        </div>
       <div class="post-header__course-page">
         <p>Posted in </p>
         <Link to={'/courses/'+course_id}>c/{course_id}</Link>
       </div>
-      <div class="post-header__vote-buttons">
+      {/* <div class="post-header__vote-buttons">
         <div class="vote-button">
           <button class="vote-button__action">
             <img class="vote-button__icon" src={upvote} alt="Upvote" />
@@ -64,7 +65,7 @@ const Post_full = ( {contents}) => {
           </button>
           <span class="vote-button__count">10</span>
         </div>
-      </div>
+      </div> */}
     </div>
 
     <div class="post_full__container">

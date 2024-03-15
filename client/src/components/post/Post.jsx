@@ -23,7 +23,7 @@ const Post = ({contents}) => {
   const content = contents.content;
   const date = formatDate(contents.entryDate);
   const course_ids = contents.course_id;
-  const username = contents.user_id.name;
+  const username = contents.user_id.username;
   const profile_image = contents.user_id.profile_img;
   const type = contents.type;
   const topic_ids = contents.topic_ids;
@@ -55,19 +55,19 @@ const Post = ({contents}) => {
             <img src={profile} alt='profile'/>
           </div>
           <div className='post__profile-name'>
-            <p>{username}</p>
+            <Link to={'/profile/'+username}>{username}</Link>
           </div>
         </div>
         <div className='post__location'>
           <p>Posted in </p>
           <Link to={'/courses/'+ course_ids.name}>c/{course_ids.name}</Link>
         </div>
-        <div className='post__votes'>
+        {/* <div className='post__votes'>
           <button class='post__votes-upvote'><img src={upvote_none} alt='upvote'></img></button>
           <p>123</p>
           <button class='post__votes-downvote'><img src={downvote_none} alt='downvote'></img></button>
           <p>123</p>
-        </div>
+        </div> */}
       </div>
       <div className='post__content'>
         <p>{content}</p>

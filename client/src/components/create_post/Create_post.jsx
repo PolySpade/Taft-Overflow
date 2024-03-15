@@ -52,19 +52,27 @@ const Create_post = ({ imgUrl, name, action }) => {
         <option key={index} value={content.name}>{'c/'+content.name}</option>
     );
 
+    const resetForm = () => {
+        document.getElementById('title').value = '';
+        document.getElementById('course').value= '';
+        document.getElementById('content').value= '';
+        document.getElementById('topics').value= '';
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default form submission
         const title = document.getElementById('title').value;
         const course = document.getElementById('course').value;
         const content = document.getElementById('content').value;
         const topics = document.getElementById('topics').value;
-        const username = 'Dax';
+        const topicsArray = topics.split(' ').map(topic => topic.replace(/^#/, ''));
+        const username = 'IceSpade';
     
         const formData = {
             title,
             course,
             content,
-            topics,
+            topicsArray,
             username
         };
         
@@ -80,7 +88,10 @@ const Create_post = ({ imgUrl, name, action }) => {
             });
             
         console.log(formData);
+        resetForm();
     };
+
+    
       
 
 

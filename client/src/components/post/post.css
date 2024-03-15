@@ -47,6 +47,14 @@
     margin-left: 0.6rem;
 }
 
+.post__profile-name a{
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 20;
+    color: white;
+    text-decoration: none;
+}
+
 .post__location{
     font-family: var(--font-family);
     color: white;

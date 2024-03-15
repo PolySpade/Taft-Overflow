@@ -4,19 +4,19 @@ import { Post_full } from '../../components/index';
 import axios from 'axios';
 import {Link, useParams} from 'react-router-dom'
 
-const Posts_container = () => {
+const Post_full_container = () => {
   
   const {id} = useParams();
   const [posts, setPosts] = useState([]);
   
   useEffect(() => {
-    const delay = 2000; 
+    const delay = 0; 
 
     const timer = setTimeout(() => {
       axios.get("http://localhost:4000/api/posts")
         .then(res => {
           const FullPost = res.data.filter(
-            post => post.type === 'regular' && post._id === id);
+            post => post._id === id);
           setPosts(FullPost);
         }).catch(err => console.log(err));
     }, delay);
@@ -33,4 +33,4 @@ const Posts_container = () => {
   );
 }
 
-export default Posts_container;
+export default Post_full_container;

@@ -6,6 +6,31 @@ const sample_data = require('../models/sample')
 
 const ObjectId = require('mongoose').Types.ObjectId;
 
+function delay(ms){
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function data_save(data){
+  try {
+      await data.save();
+      console.log('Data saved successfully');
+  } catch (error) {
+      console.log('Data exists');
+  }
+}
+
+function multiple_data_save(schemaName, topics_data) {
+  const Schema = schemas[schemaName];
+  if (!Schema) {
+      console.error('Schema not found:', schemaName);
+      return;
+  }
+  for (const data of topics_data) {
+      const newTopic = new Schema(data); 
+      data_save(newTopic);
+  }
+}
+
 async function findObjectID(schem, keyName, keyValue) {
   try {
       const schema = schemas[schem];
@@ -39,8 +64,21 @@ function createGetRoute(path, schema) {
   });
 }
 
+async function processArrayObjectID(schema,field,array) {
+  const resultsArray = [];
+  
+  for (const item of array) {
+    const objectId = await findObjectID(schema,field,item);
+    resultsArray.push(objectId);
+  }
+  
+  return resultsArray;
+}
+
 createGetRoute('/api/topics', 'Topics')
 createGetRoute('/api/courses', 'Courses')
+createGetRoute('/api/users', 'Users')
+
 
 router.get('/api/posts', async (req, res) => {
   try {
@@ -59,7 +97,7 @@ router.get('/api/posts', async (req, res) => {
                       })
                       .populate({
                         path: 'user_id', 
-                        select: 'name profile_img'
+                        select: 'username profile_img'
                       });
                       
       res.json(result);
@@ -69,25 +107,25 @@ router.get('/api/posts', async (req, res) => {
 });
 
 router.post('/api/posts', async (req, res) => {
-  const { title, course, content, topics, username } = req.body;
+  const { title, course, content, topicsArray, username } = req.body;
   const user_id = await findObjectID('Users', 'username', username);
   const course_id = await findObjectID('Courses','name', course);
-  console.log(user_id,course_id);
+  const new_topicsArray = topicsArray.map(item => ({name: item}));
+
+
+  multiple_data_save('Topics',new_topicsArray); //save the new topics, before inserting schema
+  delay(2000);
+
+  const topicsIds= await processArrayObjectID('Topics','name',topicsArray);
   try {
-    //   {
-    //     type: 'regular',
-    //     user_id: new ObjectId(userId_AtorniPulpul),
-    //     title: 'Help ME',
-    //     content: 'I want to get a 4.0',
-    //     topic_ids: [new ObjectId(topicId_id119), new ObjectId(topicId_grades)],
-    //     course_id: new ObjectId(courseId_stalgcm)
-    // }
+      
       const newPost = new schemas.Posts({
         type: 'regular',
         user_id: new ObjectId(user_id),
         title: title,
         content: content,
-        course_id: new ObjectId(course_id)
+        course_id: new ObjectId(course_id),
+        topic_ids: topicsIds.map(id => new ObjectId(id))
       });
 
       const savedPost = await newPost.save();

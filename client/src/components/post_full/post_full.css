@@ -40,7 +40,18 @@
     font-size: 20px;
     line-height: 27px;
     color: #FFFFFF;
-    padding: 15px;
+    padding: 1rem;
+    padding-left: 0.5rem;
+}
+
+.post-header__username a{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .post-header__course-page {
