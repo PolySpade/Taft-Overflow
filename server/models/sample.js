@@ -412,7 +412,7 @@ async function prepareAndSavePostsData() {
     }
 }
 
-//prepareAndSavePostsData()
+prepareAndSavePostsData()
 //multiple_data_save('Posts',posts_data)
 
 
