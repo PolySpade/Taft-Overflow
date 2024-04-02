@@ -1,67 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './body.css';
-import icon from '../../assets/icons/profile-mini-icon.svg';
-import upvote from '../../assets/icons/upvote.svg';
-import downvote from '../../assets/icons/downvote.svg';
-import arch1 from '../../assets/icons/csarch1cover.jpg';
-import CommentsSection from './scripted';
 
 const Body = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Form submitted:", { username, password, rememberMe });
+  };
+
   return (
-<div class="body__container section__padding">
-  <div class="body__container-main-post">
-
-    <div class="post-header">
-      <img class="post-header__profile-pic" src={icon} alt="Profile Pic" />
-      <div class="post-header__username">AtorniPulpul</div>
-      <div class="post-header__course-page">
-        Posted in <span class="post-header__course-name">c/CCPROG3</span>
-      </div>
-      <div class="post-header__vote-buttons">
-        <div class="vote-button">
-          <button class="vote-button__action">
-            <img class="vote-button__icon" src={upvote} alt="Upvote" />
-          </button>
-          <span class="vote-button__count">30</span>
-        </div>
-        <div class="vote-button">
-          <button class="vote-button__action">
-            <img class="vote-button__icon" src={downvote} alt="Downvote" />
-          </button>
-          <span class="vote-button__count">10</span>
-        </div>
+    <div className="body__container">
+      <div className="body__welcome">Welcome to</div>
+      <div className="body__title">Taft Overflow</div>
+      <div className="body__content">
+        <form onSubmit={handleSubmit}>
+          <div className="body__user-details">
+            <div className="body__user-details__input-box__username">
+              <input
+                type="text"
+                placeholder="Username"
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="body__user-details">
+              <div className="body__user-details__input-box__password">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="body__user-details__remember-me">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                  />
+                  Remember me
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="body__login-button">
+            <div className="body__login-button__button">
+              <input type="submit" value="Login" />
+            </div>
+            <div className="body__login-button__login">
+              Not a member? <span>Sign up</span>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-
-    <div class="post">
-      <div class="post__title">
-        <span class="post__title-text">PROF TO PICK FOR CCAPDEV</span>
-      </div>
-
-      <div class="post__content">
-        Who is a good prof for CCAPDEV?
-      </div>
-
-      <div class="post__image">
-        <img class="post__image-content" src={arch1} alt="Post Image" />
-      </div>
-
-      <div class="post__tags">
-        #prof #id122 #ccapdev
-      </div>
-    </div>
-
-    <div class="comment-box">
-      <div id="your-answer">
-        <CommentsSection />
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
   );
-}
+};
 
 export default Body;
