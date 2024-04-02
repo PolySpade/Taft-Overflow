@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 body {
     height: 100vh;
@@ -6,13 +6,14 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background: #1b1f24;
+    background: var(--background-color); 
+    font-family: var(--font-family);
 }
 
 .body__container {
     max-width: 900px;
     width: 100%;
-    background-color: #232931;
+    background-color: var(--base-color); 
     padding: 40px 40px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
