@@ -9,10 +9,8 @@ const userSchema = new Schema({
     school_id: {type:Number, unique: true, required: true},
     degree: {type:String, uppercase:true, required: true},
     aboutme: {type:String},
-    profile_img: { 
-        data: {type: Buffer}, 
-        contentType: {type: String}
-    },
+    password: {type:String, required: true},
+    profile_img: {type: String}, 
     entryDate: {type:Date, default:Date.now}
 })
 

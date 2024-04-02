@@ -52,7 +52,7 @@ const Post = ({contents}) => {
 
         <div className='post__profile'>
           <div className='post__profile-image'>
-            <img src={profile} alt='profile'/>
+            <img src={profile_image} alt='profile'/>
           </div>
           <div className='post__profile-name'>
             <Link to={'/profile/'+username}>{username}</Link>

@@ -34,55 +34,53 @@ const Post_full = ( {contents}) => {
   const profile_image = contents.user_id.profile_img;
   const type = contents.type;
   const topic_ids = contents.topic_ids;
-
   const query_tags = topic_ids.map((topic, index) => 
     <Link key={index} to={'/topics/'+ topic.name}>{'#'+ topic.name}</Link>
   );
-  
   return (
-    <div class="main_post__container">
-    <div class="main_post__container-main-post">
+    <div className="main_post__container">
+    <div className="main_post__container-main-post">
 
-    <div class="post-header">
-      <img class="post-header__profile-pic" src={icon} alt="Profile Pic" />
-      <div class="post-header__username">
+    <div className="post-header">
+      <img className="post-header__profile-pic" src={profile_image} alt="Profile Pic" />
+      <div className="post-header__username">
         <Link to={'/profile/'+username}>{username}</Link>
         </div>
-      <div class="post-header__course-page">
+      <div className="post-header__course-page">
         <p>Posted in </p>
         <Link to={'/courses/'+course_id}>c/{course_id}</Link>
       </div>
-      {/* <div class="post-header__vote-buttons">
-        <div class="vote-button">
-          <button class="vote-button__action">
-            <img class="vote-button__icon" src={upvote} alt="Upvote" />
+      {/* <div className="post-header__vote-buttons">
+        <div className="vote-button">
+          <button className="vote-button__action">
+            <img className="vote-button__icon" src={upvote} alt="Upvote" />
           </button>
-          <span class="vote-button__count">30</span>
+          <span className="vote-button__count">30</span>
         </div>
-        <div class="vote-button">
-          <button class="vote-button__action">
-            <img class="vote-button__icon" src={downvote} alt="Downvote" />
+        <div className="vote-button">
+          <button className="vote-button__action">
+            <img className="vote-button__icon" src={downvote} alt="Downvote" />
           </button>
-          <span class="vote-button__count">10</span>
+          <span className="vote-button__count">10</span>
         </div>
       </div> */}
     </div>
 
-    <div class="post_full__container">
-      <div class="post__title">
-        <span class="post__title-text">{title}</span>
+    <div className="post_full__container">
+      <div className="post__title">
+        <span className="post__title-text">{title}</span>
       </div>
 
-      <div class="post__content">
+      <div className="post__content">
         {content}
       </div>
 
-      <div class="post__tags">
+      <div className="post__tags">
         {query_tags}
       </div>
     </div>
 
-    <div class="comment-box">
+    <div className="comment-box">
       <div id="your-answer">
         <CommentsSection />
       </div>
