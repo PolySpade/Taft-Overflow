@@ -144,14 +144,9 @@
     color: var(--button-color);
     text-decoration: none;
 }
-.registration-login a:hover{
-    color: white;
-}
-
 .registration-about-box textarea{
     height: 50px;
     width: 100%;
-
     outline: none;
     font-size: 16px;
     border-radius: 5px;

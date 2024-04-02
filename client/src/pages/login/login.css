@@ -15,6 +15,9 @@
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
     font-family: var(--font-family);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .login__welcome,
@@ -105,17 +108,20 @@
 }
 
 .login__login-button__login {
+    margin-top: 1rem;
     text-align: center;
     color: #fff;
 }
 
-.login__login-button__login span {
+.login__login-button__login a {
     color: #4ECCA3;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .login__user-details__remember-me {
-    margin:5px;
+    margin-top: 0.7rem;
+
     color: white;
     cursor: pointer;
     font-family: var(--font-family);

@@ -1,14 +1,47 @@
 import React, { useState } from 'react';
 import './login.css';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Form submitted:", { username, password, rememberMe });
+  const handleSubmit = (e) => { 
+    e.preventDefault();
+
+    const formData = {
+        username,
+        password
+    };
+    
+    axios.post("http://localhost:4000/api/login", formData)
+        .then(response => {
+            // Handle success
+            console.log(response.data);
+            alert("Login successfull!");
+            window.location.href = "/";
+        })
+        .catch(error => {
+            // Handle error
+            if (error.response) {
+              // The request was made and the server responded with a status code
+              // that falls out of the range of 2xx
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+              alert(`Error: ${error.response.data.message}`);
+            } else if (error.request) {
+              // The request was made but no response was received
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log('Error', error.message);
+            }
+          });
+        
+    console.log(formData);
   };
 
   return (
@@ -55,7 +88,7 @@ const Login = () => {
               <input type="submit" value="Login" />
             </div>
             <div className="login__login-button__login">
-              Not a member? <span>Sign up</span>
+              Not a member? <Link to='/register'>Sign up</Link>
             </div>
           </div>
         </form>

@@ -185,6 +185,7 @@ router.get('/api/posts', async (req, res) => {
 
 router.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
+
   try {
     const schema = schemas['Users'];
     const query = { username: String(username) }; 
