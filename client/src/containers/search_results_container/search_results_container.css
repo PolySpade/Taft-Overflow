@@ -8,7 +8,7 @@
 .search_results__container h1{
     font-family: var(--font-family);
     color: white;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 1000;
     margin-bottom: 1rem;
     justify-content: left;
@@ -20,4 +20,8 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+}
+
+.search_results__input{
+    color: var(--button-color)
 }

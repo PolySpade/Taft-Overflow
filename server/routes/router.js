@@ -119,29 +119,69 @@ router.get('/api/users/:id', async (req, res) => {
 
 router.get('/api/posts', async (req, res) => {
   try {
-      // Ensure the schema exists before trying to use it
       if (!schemas.Posts) {
           throw new Error(`Schema Posts not found`);
       }
-      const result = await schemas.Posts.find()
-                      .populate({
-                        path: 'topic_ids', 
-                        select: 'name'
-                      })
-                      .populate({
-                        path: 'course_id', 
-                        select: 'name'
-                      })
-                      .populate({
-                        path: 'user_id', 
-                        select: 'username profile_img'
-                      });
+      const searchQuery = req.query.search;
+      let query = {};
+
+      if (searchQuery) {
+          const searchRegex = new RegExp(searchQuery, 'i'); 
+          query = {
+              $or: [
+                  { title: { $regex: searchRegex } },
+                  { content: { $regex: searchRegex } }
+              ]
+          };
+      }
+
+
+      const result = await schemas.Posts.find(query)
+          .populate({
+              path: 'topic_ids', 
+              select: 'name'
+          })
+          .populate({
+              path: 'course_id', 
+              select: 'name'
+          })
+          .populate({
+              path: 'user_id', 
+              select: 'username profile_img'
+          });
                       
       res.json(result);
   } catch (error) {
       res.status(500).json({ message: error.message });
   }
 });
+
+
+// router.get('/api/posts', async (req, res) => {
+//   try {
+//       // Ensure the schema exists before trying to use it
+//       if (!schemas.Posts) {
+//           throw new Error(`Schema Posts not found`);
+//       }
+//       const result = await schemas.Posts.find()
+//                       .populate({
+//                         path: 'topic_ids', 
+//                         select: 'name'
+//                       })
+//                       .populate({
+//                         path: 'course_id', 
+//                         select: 'name'
+//                       })
+//                       .populate({
+//                         path: 'user_id', 
+//                         select: 'username profile_img'
+//                       });
+                      
+//       res.json(result);
+//   } catch (error) {
+//       res.status(500).json({ message: error.message });
+//   }
+// });
 
 router.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
