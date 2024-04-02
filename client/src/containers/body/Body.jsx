@@ -1,6 +1,6 @@
 import React from 'react'
 import './body.css';
-import {Post, Profile_info, Profile_recents, Create_post, Create_postheader} from '../../components/index';
+import {Post, Profile_info, Profile_recents, Create_post, Create_postheader, About_us, About_us_header, Privacy_policy, Privacy_policy_header} from '../../components/index';
 
 /* PROFILE PAGE
 const Body = () => {
@@ -20,9 +20,9 @@ const Body = () => {
 const Body = () => {
   return (
     <div className='body__container section__padding'>
-      <Create_postheader></Create_postheader>
+      <About_us_header></About_us_header>
       <div className='body__container-recents'>
-        <Create_post></Create_post>
+        <About_us></About_us>
       </div>
     </div>
   )
