@@ -53,7 +53,7 @@ const Router = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Layout/>}>
-                        <Route index element={<Home/>} />
+                        <Route index element={<Home user={user}/>} />
                         <Route path='/home' element={<Home user={user}/>} />
                         <Route path='/topics' element={<Topics/>}/>
                         <Route path='/topics/:id' element={<Topic user={user}/>}/>

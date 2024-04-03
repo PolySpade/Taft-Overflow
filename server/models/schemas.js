@@ -39,7 +39,7 @@ const commentSchema = new Schema({
     user_id: {type: Schema.Types.ObjectId, ref: 'Users'},
     content: {type: String},
     post_id: {type: Schema.Types.ObjectId, ref: 'Posts'},
-    parent_comment_id: {type: Schema.Types.ObjectId, ref: 'Comments'}, 
+    comment_id: {type: Schema.Types.ObjectId, ref: 'Comments'}, 
     entryDate: {type: Date, default: Date.now}
 });
 

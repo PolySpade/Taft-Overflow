@@ -325,13 +325,36 @@ router.get('/api/vote/:id', async (req, res) => {
 
 router.get('/api/comments/:id', async (req, res) => {
   const id = req.params.id;
-  const comments = await schemas['Comments'].find({
-    $or: [{ post_id: id }, { comment_id: id }]
-  })
+  
+  try{
+    const comments = await schemas['Comments'].find({
+      $or: [{ post_id: id }, { comment_id: id }]
+    }).populate({
+      path: 'user_id',
+      select: 'username profile_img'
+    });
+    res.json(comments);
+  }catch(e){
+    res.status(500).json({ message: 'An error occured getting comments'});
+}});
 
-});
+router.post('/api/comments', async (req,res) => {
+  const { user_id,post_id, comment_id, content} = req.body;
+  try{
+    const newComment = await schemas.Comments.create({
+      post_id,
+      comment_id,
+      content,
+      user_id
+    });    
+
+    res.status(200).json({ message: "Comment Added", newComment });
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred during adding comment' });
+  }
 
 
+})
 
 // router.post('/api/login', async (req, res) => {
 //   const { username, password } = req.body;
@@ -451,6 +474,9 @@ router.post('/api/vote', async (req, res) => {
                   user_id: userId,
                   post_id: postId,
                   like_type: voteType
+              }).populate({
+                path: 'user_id',
+                select: 'username profile_img'
               });
           } else {
               // Update the existing vote
@@ -466,6 +492,9 @@ router.post('/api/vote', async (req, res) => {
                   user_id: userId,
                   comment_id: commentId,
                   like_type: voteType
+              }).populate({
+                path: 'user_id',
+                select: 'username profile_img'
               });
           } else {
               // Update the existing vote

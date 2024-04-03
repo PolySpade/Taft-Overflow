@@ -181,9 +181,18 @@ flex-direction: column;
     justify-content: flex-start;
     width: 100%;
     align-items: center;
+    flex-direction: row;
 }
 
-.comment-box {
+.post__date{
+    color: var(--button-color);
+    font-family: var(--font-family);
+    font-size: 12px;
+    font-weight: 600;
+    padding-top:0.5rem;
+}
+
+.comment-box__container {
     justify-content: flex-start;
     font-weight: 600;
     font-size: 18px;
@@ -461,6 +470,7 @@ padding: 10px;
     color: white;
     margin-left: 20px;
     font-family: 'Open Sans';
+    font-size: 15px;
 }
 
 
