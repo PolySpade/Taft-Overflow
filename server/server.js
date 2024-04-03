@@ -3,30 +3,49 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const router = require('./routes/router')
 const mongoose = require('mongoose')
-require('dotenv/config') //environment variable
+const session = require('express-session')
+const passport = require('passport')
+
+require('dotenv/config') // Loads environment variables from .env file
 
 const app = express()
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 
-
-const corsOptions ={
-    origin: '*',
-    credentials: true,
-    optionSuccessStatus: 200
+// Session middleware
+const sessionOptions = {
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false, maxAge: 60000*24 }
 }
 
-app.use(cors(corsOptions))
+app.use(session(sessionOptions))
 
-app.use('/',router)
+// Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
-const dbOptions = {useNewUrlParser:true,useUnifiedTopology:true}
-mongoose.connect(process.env.DB_URI, dbOptions).then( ()=>
- console.log('DB Connected!')).catch(err => console.log(err))
+const corsOptions = {
+    origin: 'http://localhost:3000', 
+    credentials: true, 
+    optionSuccessStatus: 200
+};
 
+app.use(cors(corsOptions));
 
-const port = process.env.PORT || 4000 //from .env file
-const server = app.listen(port,() => {
+// Routes
+app.use('/', router)
+
+// Database connection
+const dbOptions = { useNewUrlParser: true, useUnifiedTopology: true }
+mongoose.connect(process.env.DB_URI, dbOptions)
+    .then(() => console.log('DB Connected!'))
+    .catch(err => console.log(err))
+
+// Server setup
+const port = process.env.PORT || 4000
+const server = app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })

@@ -1,13 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 import './post_full.css';
-import study from '../../assets/images/study.jpg';
+import {profile,dropdown, upvote_highlight,downvote_highlight,downvote_none,upvote_none} from './imports';
 import {Link} from 'react-router-dom';
-import icon from '../../assets/icons/profile-mini-icon.svg';
-import upvote from '../../assets/icons/upvote.svg';
-import downvote from '../../assets/icons/downvote.svg';
-import arch1 from '../../assets/icons/csarch1cover.jpg';
 import CommentsSection from './scripted';
-
+import axios from 'axios';
 
 
 function formatDate(date) {
@@ -22,10 +18,10 @@ function formatDate(date) {
 }
 
 
-const Post_full = ( {contents}) => {
+const Post_full = ( {user,contents}) => {
 
-
-  const post_full_id = contents._id;
+  const user_id = contents.user_id;
+  const post_id = contents._id;
   const title = contents.title;
   const content = contents.content;
   const date = formatDate(contents.entryDate);
@@ -37,6 +33,59 @@ const Post_full = ( {contents}) => {
   const query_tags = topic_ids.map((topic, index) => 
     <Link key={index} to={'/topics/'+ topic.name}>{'#'+ topic.name}</Link>
   );
+
+  const [upvote,setUpvote] = useState([])
+  const [downvote,setDownvote] = useState([])
+  const [comments, setComments] = useState([]);
+
+  const fetchVotes = () => {
+    axios.get(`http://localhost:4000/api/vote/${post_id}`)
+      .then(res => {
+        const { upvote, downvote } = res.data;
+        setUpvote(upvote);
+        setDownvote(downvote);
+      })
+      .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchVotes();
+  }, [post_id]);
+
+  
+
+
+  const vote = (like_type) => {
+    const formData = {
+      postId: post_id,
+      userId: user_id._id,
+      voteType: like_type
+    };
+    //console.log(formData);
+    axios.post(`http://localhost:4000/api/vote`, formData)
+      .then(res => {
+        //console.log(res.data);
+        fetchVotes(); //refresh
+      })
+      .catch(err => console.log(err));
+  };
+  
+  const handleUpvote = () => vote(1);
+  const handleDownvote = () => vote(-1);
+
+
+  //comments
+  useEffect(() => {
+    axios.get(`http://localhost:4000/api/comments/${post_id}`)
+      .then(res => {
+        setComments(res.data);
+      })
+      .catch(err => console.log(err));
+  }, [post_id]);
+
+
+
+
   return (
     <div className="main_post__container">
     <div className="main_post__container-main-post">
@@ -50,20 +99,21 @@ const Post_full = ( {contents}) => {
         <p>Posted in </p>
         <Link to={'/courses/'+course_id}>c/{course_id}</Link>
       </div>
-      {/* <div className="post-header__vote-buttons">
+
+      <div className="post-header__vote-buttons">
         <div className="vote-button">
           <button className="vote-button__action">
-            <img className="vote-button__icon" src={upvote} alt="Upvote" />
+            <img className="vote-button__icon"  onClick={user && handleUpvote} src={upvote_none} alt="Upvote" />
           </button>
-          <span className="vote-button__count">30</span>
+          <span className="vote-button__count">{upvote}</span>
         </div>
         <div className="vote-button">
           <button className="vote-button__action">
-            <img className="vote-button__icon" src={downvote} alt="Downvote" />
+            <img className="vote-button__icon" onClick={user && handleDownvote} src={downvote_none} alt="Downvote" />
           </button>
-          <span className="vote-button__count">10</span>
+          <span className="vote-button__count">{downvote}</span>
         </div>
-      </div> */}
+      </div>
     </div>
 
     <div className="post_full__container">
@@ -79,13 +129,11 @@ const Post_full = ( {contents}) => {
         {query_tags}
       </div>
     </div>
-
+    {user &&
     <div className="comment-box">
-      <div id="your-answer">
-        <CommentsSection />
-      </div>
+   
     </div>
-
+    }
   </div>
 </div>
 

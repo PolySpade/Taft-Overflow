@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 
-import { BrowserRouter,Routes, Route, Outlet } from 'react-router-dom'
+import { BrowserRouter,Routes, Route, Outlet, Navigate } from 'react-router-dom'
 
 import {Header,Footer} from '../../containers/index';
 
@@ -8,12 +8,40 @@ import { Home, Topics, Topic,Posts, Post, Popular, Bookmarks, Courses, Course, C
 
 import './router.css'
 
+import axios from 'axios'
+
 
 const Router = () => {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        axios.get('http://localhost:4000/api/current_user')
+          .then(response => {
+            const { username, _id } = response.data;
+            setUser({ username, _id }); 
+          })
+          .catch(error => {
+            console.error('Error fetching user:', error);
+            setUser(null);
+
+
+          });
+    }, []);
+
+    const logout = () => {
+        axios.get('http://localhost:4000/api/logout')
+          .then(() => {
+            setUser(null);
+          })
+          .catch(error => {
+            console.error('Logout error:', error);
+          });
+      };
+
     const Layout = () => {
         return (
             <div className="layout__container">
-                <Header/>
+                <Header user={user} logout={logout}/>
                 <Outlet/>
                 <Footer/>
             </div>
@@ -26,21 +54,24 @@ const Router = () => {
                 <Routes>
                     <Route path='/' element={<Layout/>}>
                         <Route index element={<Home/>} />
-                        <Route path='/home' element={<Home/>} />
+                        <Route path='/home' element={<Home user={user}/>} />
                         <Route path='/topics' element={<Topics/>}/>
-                        <Route path='/topics/:id' element={<Topic/>}/>
-                        <Route path='/posts' element={<Posts/>}/>
-                        <Route path='/posts/:id' element={<Post/>}/>
+                        <Route path='/topics/:id' element={<Topic user={user}/>}/>
+                        <Route path='/posts' element={<Posts user={user}/>}/>
+                        <Route path='/posts/:id' element={<Post user={user}/>}/>
                         <Route path='/popular' element={<Popular/>}/>
                         <Route path='/bookmarks' element={<Bookmarks/>}/>
                         <Route path='/courses' element={<Courses/>}/>
-                        <Route path='/courses/:id' element={<Course/>}/>
-                        <Route path='/createpost' element={<Createpost/>}/>
-                        <Route path='*' element={<Home/>} />
+                        <Route path='/courses/:id' element={<Course user={user}/>}/>
+                        <Route
+                            path='/createpost'
+                            element={user ? <Createpost /> : <Navigate to='/home' replace />}
+                        />
+                        <Route path='*' element={<Home user={user}/>} />
                         <Route path='/profile/:id' element={<Profile/>}/>
-                        <Route path='/register' element={<Registration/>}/>
                         <Route path='/search-results' element={<Search_results/>}/>
-                        <Route path='/login' element={<Login/>}/>
+                        <Route path='/register' element={user ? <Navigate to='/home' replace /> : <Registration />} />
+                        <Route path='/login' element={user ? <Navigate to='/home' replace /> : <Login />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

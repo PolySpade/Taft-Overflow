@@ -9,7 +9,7 @@ import './create_post.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-const Create_post = ({ imgUrl, name, action }) => {
+const Create_post = () => {
     // const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
     // const handleKeyCommand = (command, editorState) => {
@@ -41,15 +41,30 @@ const Create_post = ({ imgUrl, name, action }) => {
     //     toggleInlineStyle(style);
     // };
 
-    const [courses,setCourses] = useState([])
-    useEffect( () => {
-        axios.get("http://localhost:4000/api/courses")
-          .then(res => setCourses(res.data)
-          ).catch(err=> console.log(err));
-      },[]);
+    const [courses, setCourses] = useState([]);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        axios.get('http://localhost:4000/api/current_user')
+          .then(response => {
+            const { username, _id } = response.data;
+            setUser({ username, _id }); 
+          })
+          .catch(error => {
+            console.error('Error fetching user:', error);
+          });
+    }, []);
+
+    useEffect(() => {
+        if (user) {
+            axios.get(`http://localhost:4000/api/courses/user/${user.username}`)
+              .then(res => setCourses(res.data))
+              .catch(err => console.log(err));
+        }
+    }, [user]);
       
     const Courses = courses.map((content, index) => 
-        <option key={index} value={content.name}>{'c/'+content.name}</option>
+        <option key={index} value={content.course_name}>{'c/'+content.course_name}</option>
     );
 
     const resetForm = () => {
@@ -66,14 +81,13 @@ const Create_post = ({ imgUrl, name, action }) => {
         const content = document.getElementById('content').value;
         const topics = document.getElementById('topics').value;
         const topicsArray = topics.split(' ').map(topic => topic.replace(/^#/, ''));
-        const username = 'IceSpade';
     
         const formData = {
             title,
             course,
             content,
             topicsArray,
-            username
+            username: String(user.username)
         };
         
         axios.post("http://localhost:4000/api/posts", formData)
@@ -97,7 +111,7 @@ const Create_post = ({ imgUrl, name, action }) => {
 
 
     return (
-        
+
         <div className="create-post-container">
                 <div className='form-group-row'>
                     <div className="form-group-title">
@@ -148,7 +162,6 @@ const Create_post = ({ imgUrl, name, action }) => {
                 <button onClick={handleSubmit} className="post-button">Post</button>
             </div>
         </div>
-
     );
 };
 

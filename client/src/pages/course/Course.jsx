@@ -4,11 +4,11 @@ import { Course_container,Leftsidebar,Rightsidebar } from '../../containers';
 
 import './course.css';
 
-const Course = () => {
+const Course = ({user}) => {
   return (
     <div className="course__container-body">
       <Leftsidebar />
-      <Course_container />
+      <Course_container user={user}/>
       <Rightsidebar />
     </div>
   )

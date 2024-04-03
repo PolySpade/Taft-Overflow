@@ -16,7 +16,7 @@ const Popular_container = () => {
   },[]);
 
   const Popular = post.slice(0,10).map((content, index) =>
-    <Post contents={content}></Post>
+    <Post key={index} contents={content}></Post>
   );
 
   return (

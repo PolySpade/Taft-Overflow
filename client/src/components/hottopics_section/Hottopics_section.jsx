@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 const Hottopics_section = ({header,icon,contents}) => {
 
   const listItems = contents.slice(0,6).map((content, index) =>
-    <Link className='hottopics_section__contents-content' to={'/topics/'+content.name}>{'#'+content.name}</Link>
+    <Link key={index} className='hottopics_section__contents-content' to={'/topics/'+content.name}>{'#'+content.name}</Link>
   );
   return (
     <div className='hottopics_section__container'>

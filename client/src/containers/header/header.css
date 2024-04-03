@@ -30,6 +30,8 @@
     width: 100%;
 }
 
+
+
 .navbar__buttons button{
     display: flex;
     margin-left: 3rem;
@@ -42,6 +44,31 @@
     justify-content: center;
 }
 
+.navbar__buttons-login{
+    display: flex;
+    margin-left: 3rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: white;
+    
+}
+
+.navbar__buttons-login a{
+    color: white;
+    text-decoration: none;
+    font-family: var(--font-family);
+    font-weight: 800;
+}
+
+.navbar__buttons-login a:hover{
+    color: var(--button-color);
+}
 
 .navbar__buttons-dropdown{
     position: relative;

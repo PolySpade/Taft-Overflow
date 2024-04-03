@@ -4,7 +4,7 @@ import { Post_full } from '../../components/index';
 import axios from 'axios';
 import {Link, useParams} from 'react-router-dom'
 
-const Post_full_container = () => {
+const Post_full_container = ({user}) => {
   
   const {id} = useParams();
   const [posts, setPosts] = useState([]);
@@ -28,7 +28,7 @@ const Post_full_container = () => {
 
   return (
     <div className='post_full_container__container section__padding'>
-      {posts[0] && <Post_full contents={posts[0]} />}
+      {posts[0] && <Post_full user={user} contents={posts[0]} />}
     </div>
   );
 }

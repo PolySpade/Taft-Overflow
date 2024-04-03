@@ -6,7 +6,7 @@ import axios from 'axios';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  //const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e) => { 
     e.preventDefault();
@@ -16,7 +16,7 @@ const Login = () => {
         password
     };
     
-    axios.post("http://localhost:4000/api/login", formData)
+    axios.post("http://localhost:4000/api/login", formData, { withCredentials: true })
         .then(response => {
             // Handle success
             console.log(response.data);
@@ -26,8 +26,6 @@ const Login = () => {
         .catch(error => {
             // Handle error
             if (error.response) {
-              // The request was made and the server responded with a status code
-              // that falls out of the range of 2xx
               console.log(error.response.data);
               console.log(error.response.status);
               console.log(error.response.headers);
@@ -71,7 +69,7 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div className="login__user-details__remember-me">
+              {/* <div className="login__user-details__remember-me">
                 <label>
                   <input
                     type="checkbox"
@@ -80,7 +78,7 @@ const Login = () => {
                   />
                  <span>Remember me</span>
                 </label>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="login__login-button">

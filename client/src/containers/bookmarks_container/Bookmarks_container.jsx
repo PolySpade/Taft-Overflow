@@ -16,7 +16,7 @@ const Bookmarks_container = () => {
   },[]);
 
   const Bookmarks = post.slice(0,4).map((content, index) =>
-    <Post contents={content}></Post>
+    <Post key={index} contents={content}></Post>
   );
 
   return (

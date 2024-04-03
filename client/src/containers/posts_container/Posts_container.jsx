@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const PostsPerPage = 10; 
 
-const Posts_container = () => {
+const Posts_container = ({user}) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -13,7 +13,7 @@ const Posts_container = () => {
   useEffect(() => {
     axios.get("http://localhost:4000/api/posts")
       .then(res => {
-        const regularPosts = res.data.filter(post => post.type === 'regular');
+        const regularPosts = res.data.filter(post => post.type === 'regular').sort((a, b) => new Date(b.entryDate) - new Date(a.entryDate));
         setPosts(regularPosts);
         setTotalPages(Math.ceil(regularPosts.length / PostsPerPage));
       }).catch(err => console.log(err));
@@ -22,13 +22,13 @@ const Posts_container = () => {
   
   const indexOfLastPost = currentPage * PostsPerPage;
   const indexOfFirstPost = indexOfLastPost - PostsPerPage;
-  console.log(indexOfFirstPost + ' ' + indexOfLastPost);
+  //console.log(indexOfFirstPost + ' ' + indexOfLastPost);
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const Posts = currentPosts.map((content, index) =>
-    <Post key={index} contents={content}></Post>
+    <Post user={user} key={index} contents={content}></Post>
   );
 
   return (

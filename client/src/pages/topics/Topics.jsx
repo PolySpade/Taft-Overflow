@@ -8,7 +8,7 @@ const Topics = () => {
   return (
     <div className="topics__container-body">
       <Leftsidebar />
-      <Topics_container />
+      <Topics_container/>
       <Rightsidebar />
     </div>
   )

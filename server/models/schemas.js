@@ -36,43 +36,46 @@ const postSchema = new Schema({
 })
 
 const commentSchema = new Schema({
-    id: {type:Number},
-    user_id: {type:Number},
-    content: {type:String},
-    post_id: {type:Number},
-    comment_id: {type:Number},
-    entryDate: {type:Date, default:Date.now}
-})
+    user_id: {type: Schema.Types.ObjectId, ref: 'Users'},
+    content: {type: String},
+    post_id: {type: Schema.Types.ObjectId, ref: 'Posts'},
+    parent_comment_id: {type: Schema.Types.ObjectId, ref: 'Comments'}, 
+    entryDate: {type: Date, default: Date.now}
+});
+
 
 const likeSchema = new Schema({
-    id: {type:Number},
-    post_id: {type:Number},
-    comment_id: {type:Number},
-    type: {type:Boolean},
+    user_id: {type: Schema.Types.ObjectId, ref: 'Users'},
+    post_id: {type: Schema.Types.ObjectId, ref: 'Posts'},
+    comment_id: {type: Schema.Types.ObjectId, ref: 'Comments'},
+    like_type: {type: Number, default: 1}, // true for like, false for dislike
+    entryDate: {type: Date, default: Date.now}
+});
+
+const joinedCoursesSchema = new Schema({
+    user_id: {type: Schema.Types.ObjectId, ref: 'Users'},
+    course_id: {type: Schema.Types.ObjectId, ref: 'Courses'},
     entryDate: {type:Date, default:Date.now}
 })
-
-
-
-//_id:false removes default generation of id
 
 const Users = mongoose.model('Users',userSchema,'users')
 const Topics = mongoose.model('Topics',topicSchema,'topics')
 const Courses = mongoose.model('Courses',courseSchema,'courses')
 const Posts = mongoose.model('Posts',postSchema,'posts')
-
-
+const Comments = mongoose.model('Comments',commentSchema,'comments')
+const Likes = mongoose.model('Likes',likeSchema,'likes')
+const JoinedCourses = mongoose.model('JoinedCourses',joinedCoursesSchema,'joinedCourses')
 
 
 const mySchemas = {
     'Users':Users,
     'Topics':Topics,
     'Courses':Courses,
-    'Posts':Posts
+    'Posts':Posts,
+    'Comments':Comments,
+    'Likes':Likes,
+    'JoinedCourses': JoinedCourses
 }
-
-
-
 
 
 module.exports = mySchemas

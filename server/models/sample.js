@@ -426,6 +426,51 @@ async function prepareAndSavePostsData() {
         ];
         
         multiple_data_save('Posts', posts_data);
+
+        const joinedCourses_data = [
+            { user_id: userId_AtorniPulpul, course_id: courseId_stalgcm },
+            { user_id: userId_AtorniPulpul, course_id: courseId_csmath1 },
+            { user_id: userId_AtorniPulpul, course_id: courseId_ccprog1 },
+            { user_id: userId_AtorniPulpul, course_id: courseId_ccprog2 },
+            { user_id: userId_AtorniPulpul, course_id: courseId_ccapdev },
+            { user_id: userId_AtorniPulpul, course_id: courseId_stmath },
+            { user_id: userId_AtorniPulpul, course_id: courseId_general },
+        
+            { user_id: userId_Blix, course_id: courseId_stalgcm },
+            { user_id: userId_Blix, course_id: courseId_csmath1 },
+            { user_id: userId_Blix, course_id: courseId_ccprog1 },
+            { user_id: userId_Blix, course_id: courseId_ccprog2 },
+            { user_id: userId_Blix, course_id: courseId_ccapdev },
+            { user_id: userId_Blix, course_id: courseId_stmath },
+            { user_id: userId_Blix, course_id: courseId_general },
+        
+            { user_id: userId_Dax, course_id: courseId_stalgcm },
+            { user_id: userId_Dax, course_id: courseId_csmath1 },
+            { user_id: userId_Dax, course_id: courseId_ccprog1 },
+            { user_id: userId_Dax, course_id: courseId_ccprog2 },
+            { user_id: userId_Dax, course_id: courseId_ccapdev },
+            { user_id: userId_Dax, course_id: courseId_stmath },
+            { user_id: userId_Dax, course_id: courseId_general },
+        
+            { user_id: userId_IceSpade, course_id: courseId_stalgcm },
+            { user_id: userId_IceSpade, course_id: courseId_csmath1 },
+            { user_id: userId_IceSpade, course_id: courseId_ccprog1 },
+            { user_id: userId_IceSpade, course_id: courseId_ccprog2 },
+            { user_id: userId_IceSpade, course_id: courseId_ccapdev },
+            { user_id: userId_IceSpade, course_id: courseId_stmath },
+            { user_id: userId_IceSpade, course_id: courseId_general },
+        
+            { user_id: userId_admin, course_id: courseId_stalgcm },
+            { user_id: userId_admin, course_id: courseId_csmath1 },
+            { user_id: userId_admin, course_id: courseId_ccprog1 },
+            { user_id: userId_admin, course_id: courseId_ccprog2 },
+            { user_id: userId_admin, course_id: courseId_ccapdev },
+            { user_id: userId_admin, course_id: courseId_stmath },
+            { user_id: userId_admin, course_id: courseId_general },
+        ];
+
+        multiple_data_save('JoinedCourses', joinedCourses_data);
+
         // Assuming multiple_data_save can handle posts_data correctly
         
     } catch (error) {
