@@ -4,6 +4,8 @@ import './App.css';
 
 import {Router} from './components/index'
 
+// require('dotenv');
+
 function App() {
   return (
     <>

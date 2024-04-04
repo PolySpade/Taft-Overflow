@@ -1,7 +1,7 @@
 import React, { useEffect, useState }  from 'react'
 import './post_full.css';
 import {profile,dropdown, upvote_highlight,downvote_highlight,downvote_none,upvote_none,pencil_fill,delete_icon} from './imports';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {Comments} from '../index';
 import axios from 'axios';
 
@@ -19,6 +19,7 @@ function formatDate(date) {
 
 
 const Post_full = ( {user,contents}) => {
+  const navigate = useNavigate();
   const post_id = contents._id;
   const date = formatDate(contents.entryDate);
   const course_id = contents.course_id.name;
@@ -108,7 +109,7 @@ const Post_full = ( {user,contents}) => {
   }, [post_id]);
 
   const listItems = comments.map((content, index) => (
-    <Comments key={index} contents={content}/>
+    <Comments user={user} key={index} contents={content}/>
   )
   );
 
@@ -137,7 +138,7 @@ const Post_full = ( {user,contents}) => {
 
   useEffect(() => {
    if(user){
-      if(user.username === username){
+      if(user.username === username || user.username === 'admin'){
         setIsOwner(true)
       }else{
         setIsOwner(false)
@@ -150,8 +151,16 @@ const Post_full = ( {user,contents}) => {
     setEditMode(true);
   };
 
-  const handleDelete = () => {
-    //setDeleteMode(true);
+  const handleDeletePost = async() => {
+    try{
+      await axios.post(`http://localhost:4000/api/posts/delete`, {
+        post_id: post_id
+      });
+      alert("Post Deleted!");
+      navigate('/home');
+    }catch(e){
+      console.log(e);
+    }
   }
 
   const saveEdits = async () => {
@@ -190,7 +199,7 @@ const Post_full = ( {user,contents}) => {
       </div>
 
       {isOwner && (<button className='post-header__edit-button'type="button" onClick={handleEdit}><img src={pencil_fill}></img></button>)}
-      {isOwner && (<button className='post-header__edit-button'type="button" onClick={handleEdit}><img src={delete_icon}></img></button>)}
+      {isOwner && (<button className='post-header__edit-button'type="button" onClick={handleDeletePost}><img src={delete_icon}></img></button>)}
       <div className="post-header__vote-buttons">
 
 

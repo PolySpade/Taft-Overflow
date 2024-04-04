@@ -500,6 +500,36 @@ router.post('/api/posts', async (req, res) => {
   }
 });
 
+router.post('/api/posts/delete', async(req,res) => {
+  const {post_id} = req.body;
+  try{
+    await schemas.Posts.deleteOne({
+      _id: new ObjectId(post_id)
+    });
+
+    await schemas.Comments.deleteMany({
+      post_id: post_id
+    })
+    res.status(200).json({message:"Deleted Successfully"})
+  }catch(e){
+    res.status(500).json({message: e})
+  }
+});
+
+router.post('/api/comments/delete', async(req,res) => {
+  const {comment_id} = req.body;
+  //console.log(req.body);
+  try{
+    await schemas.Comments.deleteOne({
+      _id: new ObjectId(comment_id)
+    });
+
+    res.status(200).json({message:"Deleted Successfully"})
+  }catch(e){
+    res.status(500).json({message: e})
+  }
+});
+
 
 router.post('/api/join_course', async (req, res) => {
   const { user_id, course_id } = req.body;

@@ -13,7 +13,7 @@ const Post_full_container = ({user}) => {
     const delay = 0; 
 
     const timer = setTimeout(() => {
-      axios.get("http://localhost:4000/api/posts")
+      axios.get(`http://localhost:4000/api/posts`)
         .then(res => {
           const FullPost = res.data.filter(
             post => post._id === id);

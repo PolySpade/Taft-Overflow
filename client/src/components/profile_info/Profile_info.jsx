@@ -8,6 +8,7 @@ const Profile_info = ({contents}) => {
   const degree = contents.degree;
   const school_id = contents.school_id;
   const aboutme = contents.aboutme;
+  const profile_pic = contents.profile_img;
 
   // username: 'IceSpade',
   // name: 'Donald Xu',
@@ -19,7 +20,7 @@ const Profile_info = ({contents}) => {
   return (
     <div className='profile_info__container'>
       <div className='profile_info__image'>
-        <img src={profile} alt='icespadepfp'></img>
+        <img src={profile_pic} alt={username}></img>
       </div>
       <div className='profile_info__textcontainer'>
       <div className='profile_info__details'>
