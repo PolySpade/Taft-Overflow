@@ -23,8 +23,6 @@ const Router = () => {
           .catch(error => {
             console.error('Error fetching user:', error);
             setUser(null);
-
-
           });
     }, []);
 

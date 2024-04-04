@@ -204,7 +204,7 @@ flex-direction: column;
 width: 100%;
 height: 3px;
 background-color: #FFFFFF;
-margin: 10px;
+margin: 15px;
 }
 
 .post-date {
@@ -422,9 +422,12 @@ padding: 10px;
 
 .comment__bar{
     width: 100%;
-    height: 3px;
+    height: 1px;
     background-color: #FFFFFF;
+    margin-bottom: 1rem;
 }
+
+
 
 .comment__header{
     display: flex;
@@ -448,6 +451,13 @@ padding: 10px;
     align-items: center;
 }
 
+.comment__header-left_container a{
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+
+}
+
 .comment__actions{
     display: flex;
     justify-content: flex-end;
@@ -467,10 +477,10 @@ padding: 10px;
 }
 
 .comment__date{
-    color: white;
-    margin-left: 20px;
+    color: var(--button-color);
     font-family: 'Open Sans';
-    font-size: 15px;
+    font-size: 12px;
+    margin-top: 0.5rem;
 }
 
 

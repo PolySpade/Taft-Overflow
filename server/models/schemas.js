@@ -38,8 +38,7 @@ const postSchema = new Schema({
 const commentSchema = new Schema({
     user_id: {type: Schema.Types.ObjectId, ref: 'Users'},
     content: {type: String},
-    post_id: {type: Schema.Types.ObjectId, ref: 'Posts'},
-    comment_id: {type: Schema.Types.ObjectId, ref: 'Comments'}, 
+    post_id: {type: Schema.Types.ObjectId, ref: 'Posts'}, 
     entryDate: {type: Date, default: Date.now}
 });
 
@@ -47,7 +46,6 @@ const commentSchema = new Schema({
 const likeSchema = new Schema({
     user_id: {type: Schema.Types.ObjectId, ref: 'Users'},
     post_id: {type: Schema.Types.ObjectId, ref: 'Posts'},
-    comment_id: {type: Schema.Types.ObjectId, ref: 'Comments'},
     like_type: {type: Number, default: 1}, // true for like, false for dislike
     entryDate: {type: Date, default: Date.now}
 });

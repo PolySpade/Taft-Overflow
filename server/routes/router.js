@@ -153,19 +153,41 @@ router.get('/api/courses', async (req, res) => {
   }
 });
 
-router.get('/api/courses/user/:id', async (req, res) => {
-  const user_id = await findObjectID('Users', 'username', req.params.id);
-  try {
-    const userCourses = await schemas['JoinedCourses'].find({ user_id: user_id }).populate('course_id', 'name');
+//TODO
 
-    // Correct the way objects are constructed in the map function
+router.get('/api/courses/:id', async(req,res) => {
+  try{
+    if (!schemas['Courses']) {
+      throw new Error("Schema 'Courses' not found");
+    }
+    const result = await findObjectID('Courses','name', req.params.id);
+    res.json({course_id:result});
+
+  }catch(e){
+    res.status(500).json({message: error.message})
+  }
+});
+
+router.get('/api/courses/user/:id', async (req, res) => {
+  try {
+    const user_id = await findObjectID('Users', 'username', req.params.id);
+    if (!user_id) {
+      console.log('No user ID found for username:', req.params.id);
+      return res.status(404).send({ message: 'User not found' });
+    }
+    const userCourses = await schemas['JoinedCourses'].find({ user_id: user_id }).populate('course_id', 'name');
+    if (!userCourses.length) {
+      console.log('No courses found for user ID:', user_id);
+      return res.status(404).send({ message: 'Courses not found for this user' });
+    }
     const simplifiedUserCourses = userCourses.map(course => ({
-      course_name: course.course_id.name
+      course_name: course.course_id.name  // Ensure that course_id is populated correctly
     }));
 
     res.json(simplifiedUserCourses);
   } catch (error) {
-    res.status(500).send({ message: 'Error fetching course-user data', error: error });
+    console.error('Error fetching course-user data:', error);
+    res.status(500).send({ message: 'Error fetching course-user data', error: error.toString() });
   }
 });
 
@@ -339,11 +361,10 @@ router.get('/api/comments/:id', async (req, res) => {
 }});
 
 router.post('/api/comments', async (req,res) => {
-  const { user_id,post_id, comment_id, content} = req.body;
+  const { user_id,post_id, content} = req.body;
   try{
     const newComment = await schemas.Comments.create({
       post_id,
-      comment_id,
       content,
       user_id
     });    
@@ -457,58 +478,86 @@ router.post('/api/posts', async (req, res) => {
   }
 });
 
-router.post('/api/join_course', async (req, res) => { //TODO
 
-})
+router.post('/api/join_course', async (req, res) => {
+  const { user_id, course_id } = req.body;
+  //console.log(req.body)
+  try {
+
+    const existingJoin = await schemas.JoinedCourses.findOne({
+      user_id: new ObjectId(user_id),
+      course_id: new ObjectId(course_id)
+    });
+    if (existingJoin) {
+      const existingJoin = await schemas.JoinedCourses.deleteOne({
+        user_id: new ObjectId(user_id),
+        course_id: new ObjectId(course_id)
+      });
+      console.log(existingJoin);
+      res.status(200).json({ message: "Removed successfully" });          
+    } else {
+      const join = new schemas.JoinedCourses({
+        user_id: new ObjectId(user_id),
+        course_id: new ObjectId(course_id)
+      });
+      await join.save();
+      res.status(200).json({ message: "Joined successfully", join });          
+    }
+      
+  } catch (e) {
+      res.status(500).json({ message: "Error joining course", error: e.message });
+  }
+});
+
+// router.post('/api/join_course', async (req, res) => {
+//   const { userId, courseId } = req.body;
+//   //console.log(req.body);
+//   try {
+//     let course = await schemas['JoinedCourses'].findOne({ user_id: userId, course_id: courseId });
+//     if (!course) {
+
+//       const course_join = await schemas.JoinedCourses.create({
+//         user_id: userId,
+//         course_id: courseId
+//       });
+
+//       res.status(200).json({ message: "Joined successfully" , course_join});
+//     } else {
+//       res.status(200).json({ message: "User already joined this course" });
+//     }
+//   } catch (e) {
+//     res.status(500).json({ message: "Error joining course", error: e.message });
+//   }
+// });
 
 router.post('/api/vote', async (req, res) => {
-  const { userId, postId, commentId, voteType } = req.body;
-  try {
-      let like;
-      // Check if voting on a post
-      if (postId) {
-          like = await schemas['Likes'].findOne({ user_id: userId, post_id: postId });
-          if (!like) {
-              // Create a new vote record for the post
-              like = new schemas.Likes({
-                  user_id: userId,
-                  post_id: postId,
-                  like_type: voteType
-              }).populate({
-                path: 'user_id',
-                select: 'username profile_img'
-              });
-          } else {
-              // Update the existing vote
-              like.like_type = voteType;
-          }
-      } 
-      // Check if voting on a comment
-      else if (commentId) {
-          like = await schemas['Likes'].findOne({ user_id: userId, comment_id: commentId });
-          if (!like) {
-              // Create a new vote record for the comment
-              like = new schemas.Likes({
-                  user_id: userId,
-                  comment_id: commentId,
-                  like_type: voteType
-              }).populate({
-                path: 'user_id',
-                select: 'username profile_img'
-              });
-          } else {
-              // Update the existing vote
-              like.like_type = voteType;
-          }
-      } 
-      
-      await like.save();
+  const { userId, postId, voteType } = req.body;
 
-      res.status(200).json({ message: "Vote updated successfully", like });
+  try {
+      // Check if voting on a post
+      let like = await schemas['Likes'].findOne({ user_id: userId, post_id: postId });
+      if (!like) {
+          // Create a new vote record for the post
+          like = new schemas.Likes({
+              user_id: userId,
+              post_id: postId,
+              like_type: voteType
+          });
+          await like.save();
+      } else {
+          // Update the existing vote
+          like.like_type = voteType;
+          await like.save();
+      }
+
+      // Optionally, here you should handle comment voting if required
+
+      res.status(200).json({ message: "Vote updated successfully"});
   } catch (error) {
       res.status(500).json({ message: "Error updating vote", error });
   }
 });
+
 
 
 //createGetRoute('/api/posts','Posts')

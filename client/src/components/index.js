@@ -12,3 +12,4 @@ export { default as Post_full} from './post_full/Post_full';
 export { default as Create_post} from './create_post/Create_post';
 export { default as Profile_info} from './profile_info/Profile_info';
 export { default as Profile_recents} from './profile_recents/Profile_recents';
+export { default as Comments} from './comments/Comments';
