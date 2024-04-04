@@ -28,7 +28,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 const corsOptions = {
-    origin: process.env.ORIGIN, 
+    origin: '*', 
     credentials: true, 
     optionSuccessStatus: 200
 };
