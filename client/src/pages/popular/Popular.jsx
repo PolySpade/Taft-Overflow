@@ -4,11 +4,11 @@ import { Popular_container,Leftsidebar,Rightsidebar } from '../../containers';
 
 import './popular.css';
 
-const Popular = () => {
+const Popular = ({user}) => {
   return (
     <div className="popular__container-body">
       <Leftsidebar />
-      <Popular_container />
+      <Popular_container user={user} />
       <Rightsidebar />
     </div>
   )

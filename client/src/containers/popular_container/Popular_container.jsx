@@ -4,7 +4,7 @@ import {Post} from '../../components/index';
 import axios from 'axios';
 
 
-const Popular_container = () => {
+const Popular_container = ({user}) => {
 
   const [post,setPosts] = useState([])
 
@@ -16,7 +16,7 @@ const Popular_container = () => {
   },[]);
 
   const Popular = post.slice(0,10).map((content, index) =>
-    <Post key={index} contents={content}></Post>
+    <Post user={user} key={index} contents={content}></Post>
   );
 
   return (

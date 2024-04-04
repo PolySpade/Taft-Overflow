@@ -57,17 +57,17 @@ const Router = () => {
                         <Route path='/topics/:id' element={<Topic user={user}/>}/>
                         <Route path='/posts' element={<Posts user={user}/>}/>
                         <Route path='/posts/:id' element={<Post user={user}/>}/>
-                        <Route path='/popular' element={<Popular/>}/>
-                        <Route path='/bookmarks' element={<Bookmarks/>}/>
+                        <Route path='/popular' element={<Popular user={user}/>}/>
+                        <Route path='/bookmarks' element={<Bookmarks user={user}/>}/>
                         <Route path='/courses' element={<Courses/>}/>
                         <Route path='/courses/:id' element={<Course user={user}/>}/>
                         <Route
                             path='/createpost'
-                            element={user ? <Createpost /> : <Navigate to='/home' replace />}
+                            element={user ? <Createpost user={user} /> : <Navigate to='/home' replace />}
                         />
                         <Route path='*' element={<Home user={user}/>} />
-                        <Route path='/profile/:id' element={<Profile/>}/>
-                        <Route path='/search-results' element={<Search_results/>}/>
+                        <Route path='/profile/:id' element={<Profile user={user}/>}/>
+                        <Route path='/search-results' element={<Search_results user={user}/>}/>
                         <Route path='/register' element={user ? <Navigate to='/home' replace /> : <Registration />} />
                         <Route path='/login' element={user ? <Navigate to='/home' replace /> : <Login />} />
                     </Route>

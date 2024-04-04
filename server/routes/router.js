@@ -2,8 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const router = express.Router()
 const schemas = require('../models/schemas')
-//const sample_data = require('../models/sample')
-
+//const sample_data = require('../models/sample') 
+//remove this comment to include sample data
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -316,9 +316,7 @@ router.get('/api/current_user', (req, res) => {
 router.get('/api/vote/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    const like = await schemas['Likes'].find({
-      $or: [{ post_id: id }, { comment_id: id }]
-    }); // Exclude fields like password and __v from the result
+    const like = await schemas['Likes'].find({ post_id: id }); // Exclude fields like password and __v from the result
 
     if (!like) {
       return res.status(404).json({ message: 'Record not found' });
@@ -376,6 +374,27 @@ router.post('/api/comments', async (req,res) => {
 
 
 })
+
+router.post('/api/posts/update', async (req, res) => {
+  try {
+    const { title, content, post_id } = req.body;
+    
+    const updatedPost = await schemas.Posts.findByIdAndUpdate(post_id, { title, content }, { new: true });
+    if (updatedPost) {
+      res.json({ message: 'Post updated successfully', updatedPost });
+    } else {
+      res.status(404).json({ message: 'Post not found' });
+    }
+    // Do not send another response here as it's already handled above
+  } catch (err) {
+    console.error('Error updating post:', err);
+    if (!res.headersSent) {
+        res.status(500).json({ message: 'Error updating post', error: err });
+    }
+  }
+});
+
+
 
 // router.post('/api/login', async (req, res) => {
 //   const { username, password } = req.body;
@@ -440,7 +459,7 @@ router.post('/api/register', async (req, res) => {
 });
 
 router.post('/api/posts', async (req, res) => {
-  const { title, course, content, topicsArray, username } = req.body;
+  const { title, course, content, topicsArray, username, type } = req.body;
   const user_id = await findObjectID('Users', 'username', username);
   const course_id = await findObjectID('Courses', 'name', course);
   let new_topicsArray = topicsArray.map(item => ({ name: item }));
@@ -463,7 +482,7 @@ router.post('/api/posts', async (req, res) => {
     topicsIds = await processArrayObjectID('Topics', 'name', new_topicsArray.map(topic => topic.name));
 
     const newPost = new schemas.Posts({
-      type: 'regular',
+      type: type,
       user_id: new ObjectId(user_id),
       title: title,
       content: content,

@@ -4,11 +4,11 @@ import { Search_results_container,Leftsidebar,Rightsidebar } from '../../contain
 
 import './search_results.css';
 
-const Search_results = () => {
+const Search_results = ({user}) => {
   return (
     <div className="search_results__container-body">
       <Leftsidebar />
-      <Search_results_container />
+      <Search_results_container user={user}/>
       <Rightsidebar />
     </div>
   )

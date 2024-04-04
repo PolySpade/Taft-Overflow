@@ -6,9 +6,11 @@
     width: 100%;
     border-radius: 15px;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+    overflow-y: auto;
+    max-height: 500px;
 }
 
 .profile_recents__container-text {

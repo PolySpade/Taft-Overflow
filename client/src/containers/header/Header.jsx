@@ -1,7 +1,7 @@
 import { useState, useEffect, React} from 'react'
 import './header.css';
 import { Navsearchbar } from '../../components/';
-import { logo_full,menu,messages,notifications,profile,createpost } from './imports';
+import { logo_full,menu,messages,notifications,profile,createpost,pencil_fill } from './imports';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
@@ -62,6 +62,7 @@ const Header = ( {user, logout}) => {
         {/* <button type="button"><img src={messages}></img></button>
         <button type="button"><img src={notifications}></img></button> */}
         {user && (<Link to='/createpost'><button type="button"><img src={createpost}></img></button></Link>)}
+
         {user ? (          
           <div className='navbar__buttons-dropdown'>
             <button type="button" onClick={() => clickMenu("navbar__profile_dropdown")}><img src={profile} alt="Profile"></img></button>

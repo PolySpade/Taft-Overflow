@@ -4,7 +4,7 @@ import { Post } from '../../components/index';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
-const Search_results_container = () => {
+const Search_results_container = ({user}) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const searchInput = searchParams.get('search_input');
@@ -20,7 +20,7 @@ const Search_results_container = () => {
   }, [searchInput]); // useEffect will run when `searchInput` changes
 
   const Search_results = posts.slice(0, 10).map((content, index) =>
-    <Post key={content._id} contents={content}></Post> // Ensure to have a key for each child in a list
+    <Post user={user} key={content._id} contents={content}></Post> // Ensure to have a key for each child in a list
   );
 
   return (

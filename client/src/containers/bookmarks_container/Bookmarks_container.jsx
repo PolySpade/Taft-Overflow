@@ -4,7 +4,7 @@ import {Post} from '../../components/index';
 import axios from 'axios';
 
 
-const Bookmarks_container = () => {
+const Bookmarks_container = ({user}) => {
 
   const [post,setPosts] = useState([])
 
@@ -16,7 +16,7 @@ const Bookmarks_container = () => {
   },[]);
 
   const Bookmarks = post.slice(0,4).map((content, index) =>
-    <Post key={index} contents={content}></Post>
+    <Post user={user} key={index} contents={content}></Post>
   );
 
   return (

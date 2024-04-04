@@ -1,6 +1,6 @@
 import React, { useEffect, useState }  from 'react'
 import './post_full.css';
-import {profile,dropdown, upvote_highlight,downvote_highlight,downvote_none,upvote_none} from './imports';
+import {profile,dropdown, upvote_highlight,downvote_highlight,downvote_none,upvote_none,pencil_fill} from './imports';
 import {Link} from 'react-router-dom';
 import {Comments} from '../index';
 import axios from 'axios';
@@ -19,10 +19,7 @@ function formatDate(date) {
 
 
 const Post_full = ( {user,contents}) => {
-  const user_id = contents.user_id;
   const post_id = contents._id;
-  const title = contents.title;
-  const content = contents.content;
   const date = formatDate(contents.entryDate);
   const course_id = contents.course_id.name;
   const username = contents.user_id.username;
@@ -32,10 +29,20 @@ const Post_full = ( {user,contents}) => {
   const query_tags = topic_ids.map((topic, index) => 
     <Link key={index} to={'/topics/'+ topic.name}>{'#'+ topic.name}</Link>
   );
-
-  const [upvote,setUpvote] = useState([])
-  const [downvote,setDownvote] = useState([])
+  const [title, setTitle] = useState([]);
+  const [content, setContent] = useState([]);
+  const [upvote,setUpvote] = useState([]);
+  const [downvote,setDownvote] = useState([]);
   const [comments, setComments] = useState([]);
+  const [isOwner, setIsOwner] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [editedTitle, setEditedTitle] = useState(contents.title);
+  const [editedContent, setEditedContent] = useState(contents.content);
+
+  const editContent = () => {
+    setTitle(contents.title);
+    setContent(contents.content);
+  }
 
   const fetchVotes = () => {
     axios.get(`http://localhost:4000/api/vote/${post_id}`)
@@ -49,6 +56,7 @@ const Post_full = ( {user,contents}) => {
 
   useEffect(() => {
     fetchVotes();
+    editContent();
   }, [post_id]);
 
 
@@ -57,7 +65,7 @@ const Post_full = ( {user,contents}) => {
 
     const formData = {
       postId: post_id,
-      userId: user_id._id,
+      userId: user._id,
       voteType: like_type
     };
 
@@ -127,9 +135,42 @@ const Post_full = ( {user,contents}) => {
     }
   };
 
+  useEffect(() => {
+   if(user){
+      if(user.username === username){
+        setIsOwner(true)
+      }else{
+        setIsOwner(false)
+      }
+   } 
+  })
+
+
+  const handleEdit = () => {
+    setEditMode(true);
+  };
+
+  const saveEdits = async () => {
+    try {
+      await axios.post(`http://localhost:4000/api/posts/update`, {
+        title: editedTitle,
+        content: editedContent,
+        post_id: post_id
+      });
+      //console.log(response);
+
+      setEditMode(false);
+      editContent();
+      window.location.reload();
+    } catch (err) {
+      console.error('Error updating post:', err);
+    }
+  };
+
 
   return (
     <div className="main_post__container">
+      
     <div className="main_post__container-main-post">
 
     <div className="post-header">
@@ -142,7 +183,10 @@ const Post_full = ( {user,contents}) => {
         <Link to={'/courses/'+course_id}>c/{course_id}</Link>
       </div>
 
+      {isOwner && (<button className='post-header__edit-button'type="button" onClick={handleEdit}><img src={pencil_fill}></img></button>)}
       <div className="post-header__vote-buttons">
+
+
         <div className="vote-button">
           <button className="vote-button__action">
             <img className="vote-button__icon"  onClick={user && handleUpvote} src={upvote_none} alt="Upvote" />
@@ -159,13 +203,37 @@ const Post_full = ( {user,contents}) => {
     </div>
 
     <div className="post_full__container">
-      <div className="post__title">
+      {editMode ? (
+          <div>
+            <div className="post__edit_headers">Title</div>
+            <input 
+            className='edit_textInput'
+              type="text"
+              value={editedTitle}
+              onChange={(e) => setEditedTitle(e.target.value)}
+            />
+            <div className="post__edit_headers">Contents</div>
+            <textarea
+            className='edit_commentInput'
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+            />
+            <button className="post__edit_buttons" onClick={saveEdits}>Save</button>
+            <button className="post__edit_buttons" onClick={() => setEditMode(false)}>Cancel</button>
+          </div>
+        ) : (
+          <div>
+            <div className="post__title"><span className="post__title-text">{title}</span></div>
+            <div className="post__content">{content}</div>
+          </div>
+        )}
+      {/* <div className="post__title">
         <span className="post__title-text">{title}</span>
       </div>
 
       <div className="post__content">
         {content}
-      </div>
+      </div> */}
       
       <div className="post__tags">
         

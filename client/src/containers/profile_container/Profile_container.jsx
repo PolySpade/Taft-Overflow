@@ -4,9 +4,9 @@ import { Profile_recents, Profile_info } from '../../components/index';
 import axios from 'axios';
 import {Link, useParams} from 'react-router-dom'
 
-const Profile_container = () => {
+const Profile_container = ({user}) => {
   const {id} = useParams();
-  const [user,setUser] = useState([])
+  const [userr,setUser] = useState([])
 
   useEffect( () => {
     axios.get("http://localhost:4000/api/users")
@@ -18,11 +18,10 @@ const Profile_container = () => {
 
   return (
     <div className='profile_container__container section__padding'>
-      {user[0] && <Profile_info contents={user[0]} />}
-      {/* <div className='profile_container__recents'>
-        <Profile_recents></Profile_recents>
-        <Profile_recents></Profile_recents>
-      </div> */}
+      {userr[0] && <Profile_info contents={userr[0]} />}
+      <div className='profile_container__recents'>
+        <Profile_recents user={user} id={id}></Profile_recents>
+      </div>
     </div>
   );
 }

@@ -56,7 +56,7 @@ const Post = ({user,contents}) => {
   const vote = (like_type) => {
     const formData = {
       postId: post_id,
-      userId: user_id._id,
+      userId: user._id,
       voteType: like_type
     };
     //console.log(formData);

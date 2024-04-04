@@ -10,12 +10,16 @@ const Rightsidebar = () => {
   const [announcements,setAnnouncements] = useState([]);
   const [topics,setTopics] = useState([]);
 
-  useEffect( () => {
+  useEffect(() => {
     axios.get("http://localhost:4000/api/posts")
       .then(res => {
-        setAnnouncements(res.data.filter(post => post.type === 'announcement'))
-      }).catch(err=> console.log(err));
-  },[]);
+        const sortedAnnouncements = res.data
+          .filter(post => post.type === 'announcement')
+          .sort((a, b) => new Date(b.entryDate) - new Date(a.entryDate)); // Sort announcements by date descending
+        setAnnouncements(sortedAnnouncements);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   useEffect( () => {
     axios.get("http://localhost:4000/api/topics")

@@ -4,11 +4,11 @@ import { Posts_container,Leftsidebar,Rightsidebar, Create_post_container } from 
 
 import './createpost.css';
 
-const Createpost = () => {
+const Createpost = ({user}) => {
   return (
     <div className="createpost__container-body">
       <Leftsidebar />
-      <Create_post_container />
+      <Create_post_container user={user}/>
       <Rightsidebar />
     </div>
   )

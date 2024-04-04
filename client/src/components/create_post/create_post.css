@@ -6,6 +6,12 @@
     width: 100%; 
     margin: 1.5rem 0rem;
 }
+.create-post-header-type{
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 25px;
+  margin-bottom: 1rem;
+}
 
 .create-post-header {
   font-family: var(--font-family);
