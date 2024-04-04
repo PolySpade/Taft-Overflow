@@ -21,19 +21,19 @@ const Rightsidebar = () => {
       .catch(err => console.log(err));
   }, []);
 
-  useEffect( () => {
-    axios.get("http://localhost:4000/api/topics")
-      .then(res => {
-        setTopics(res.data)
-      })
-      .catch(err => console.log(err));
-  },[]);
+  // useEffect( () => {
+  //   axios.get("http://localhost:4000/api/topics")
+  //     .then(res => {
+  //       setTopics(res.data)
+  //     })
+  //     .catch(err => console.log(err));
+  // },[]);
 
 
   return (
     <div className='rightsidebar__container section__padding'>
       <Announcement_section header='Announcement' icon={announcement} contents={announcements}/>
-      <Hottopics_section header='Hot Topics' icon={trend} contents={topics} />
+      {/* <Hottopics_section header='Hot Topics' icon={trend} contents={topics} /> */}
       {/* <Sidebarsection header='Recent Comments' icon={recent} /> */}
     </div>
     

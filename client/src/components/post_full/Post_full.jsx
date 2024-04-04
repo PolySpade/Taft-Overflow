@@ -160,8 +160,10 @@ const Post_full = ( {user,contents}) => {
       //console.log(response);
 
       setEditMode(false);
+      contents.title=editedTitle;
+      contents.content=editedContent;
       editContent();
-      window.location.reload();
+      //window.location.reload();
     } catch (err) {
       console.error('Error updating post:', err);
     }
