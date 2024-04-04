@@ -9,7 +9,7 @@ const Create_post = ({user}) => {
     // const [user, setUser] = useState(null);
 
     // useEffect(() => {
-    //     axios.get('http://localhost:4000/api/current_user')
+    //     axios.get('${process.env.REACT_APP_API_URL}/api/current_user')
     //       .then(response => {
     //         const { username, _id } = response.data;
     //         setUser({ username, _id }); 
@@ -21,7 +21,7 @@ const Create_post = ({user}) => {
 
     useEffect(() => {
         if (user) {
-            axios.get(`http://localhost:4000/api/courses/user/${user.username}`)
+            axios.get(`${process.env.REACT_APP_API_URL}/api/courses/user/${user.username}`)
               .then(res => setCourses(res.data))
               .catch(err => console.log(err));
         }
@@ -65,7 +65,7 @@ const Create_post = ({user}) => {
             type
         };
         
-        axios.post("http://localhost:4000/api/posts", formData)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/posts`, formData)
             .then(response => {
                 // Handle success
                 console.log(response.data);

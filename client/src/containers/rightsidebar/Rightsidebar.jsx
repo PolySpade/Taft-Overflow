@@ -11,7 +11,7 @@ const Rightsidebar = () => {
   const [topics,setTopics] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/posts")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/posts`)
       .then(res => {
         const sortedAnnouncements = res.data
           .filter(post => post.type === 'announcement')
@@ -22,7 +22,7 @@ const Rightsidebar = () => {
   }, []);
 
   // useEffect( () => {
-  //   axios.get("http://localhost:4000/api/topics")
+  //   axios.get("${process.env.REACT_APP_API_URL}/api/topics")
   //     .then(res => {
   //       setTopics(res.data)
   //     })

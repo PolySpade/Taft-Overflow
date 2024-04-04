@@ -87,7 +87,7 @@ const Registration = () => {
 
               setErrors({}); //clear errors
               console.log(base64String);
-              axios.post("http://localhost:4000/api/register", formData)
+              axios.post(`${process.env.REACT_APP_API_URL}/api/register`, formData)
                 .then(response => {
                   alert("Account created successfully!");
                   setUsername('');

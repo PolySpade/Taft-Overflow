@@ -46,7 +46,7 @@ const Post_full = ( {user,contents}) => {
   }
 
   const fetchVotes = () => {
-    axios.get(`http://localhost:4000/api/vote/${post_id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/vote/${post_id}`)
       .then(res => {
         const { upvote, downvote } = res.data;
         setUpvote(upvote);
@@ -71,7 +71,7 @@ const Post_full = ( {user,contents}) => {
     };
 
     //console.log(formData);
-    axios.post(`http://localhost:4000/api/vote`, formData)
+    axios.post(`${process.env.REACT_APP_API_URL}/api/vote`, formData)
       .then(res => {
         //console.log(res.data);
         fetchVotes(); //refresh
@@ -92,7 +92,7 @@ const Post_full = ( {user,contents}) => {
   const fetchComments = async (id) => {
     console.log(`Fetching comments for post ${id}`); 
     try {
-      const response = await axios.get(`http://localhost:4000/api/comments/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/comments/${id}`);
       if (response.data) {
 
         setComments(response.data);
@@ -123,7 +123,7 @@ const Post_full = ( {user,contents}) => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:4000/api/comments`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/comments`, {
         post_id: post_id,
         user_id: user._id,
         content: commentInput,
@@ -153,7 +153,7 @@ const Post_full = ( {user,contents}) => {
 
   const handleDeletePost = async() => {
     try{
-      await axios.post(`http://localhost:4000/api/posts/delete`, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/posts/delete`, {
         post_id: post_id
       });
       alert("Post Deleted!");
@@ -165,7 +165,7 @@ const Post_full = ( {user,contents}) => {
 
   const saveEdits = async () => {
     try {
-      await axios.post(`http://localhost:4000/api/posts/update`, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/posts/update`, {
         title: editedTitle,
         content: editedContent,
         post_id: post_id

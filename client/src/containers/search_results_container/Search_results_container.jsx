@@ -12,7 +12,7 @@ const Search_results_container = ({user}) => {
 
   useEffect(() => {
     if (searchInput) {
-      axios.get(`http://localhost:4000/api/posts?search=${searchInput}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/api/posts?search=${searchInput}`)
         .then(res => {
           setPosts(res.data); // Assuming the API returns only relevant posts
         }).catch(err => console.log(err));

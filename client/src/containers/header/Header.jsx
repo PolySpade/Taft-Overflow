@@ -15,10 +15,22 @@ function clickMenu(id) {
 
 
 const Header = ( {user, logout}) => {
+  const [isAdmin, setAdmin] = useState(false);
+
+
+  useEffect( () => {
+    if(user){
+      if(user.username === 'admin'){
+        setAdmin(true);
+      }else{
+        setAdmin(false);
+      }
+    }
+  },[]);
   // const [user, setUser] = useState(null);
 
   // useEffect(() => {
-  //   axios.get('http://localhost:4000/api/current_user')
+  //   axios.get('${process.env.REACT_APP_API_URL}/api/current_user')
   //     .then(response => {
   //       const { username, _id } = response.data;
   //       setUser({ username, _id }); // Assuming you want to store both
@@ -29,7 +41,7 @@ const Header = ( {user, logout}) => {
   // }, []);
 
   // const handleLogout = () => {
-  //   axios.get('http://localhost:4000/api/logout')
+  //   axios.get('${process.env.REACT_APP_API_URL}/api/logout')
   //     .then(() => {
   //       setUser(null);
   //     })
@@ -61,7 +73,15 @@ const Header = ( {user, logout}) => {
         </div>
         {/* <button type="button"><img src={messages}></img></button>
         <button type="button"><img src={notifications}></img></button> */}
-        {user && (<Link to='/createpost'><button type="button"><img src={createpost}></img></button></Link>)}
+        {user && 
+        (<div className='navbar__buttons-dropdown'>
+          <button type="button" onClick={() => clickMenu("navbar__create_dropdown")}><img src={createpost} alt="Create"></img></button>
+          <div id='navbar__create_dropdown' className='navbar__buttons-dropdown_content scale-up-tr'>
+            {isAdmin && (<Link to="/createcourse">Create Course</Link>)}
+            <Link to="/createpost">Create Post</Link>
+          </div>
+        </div>)}
+
 
         {user ? (          
           <div className='navbar__buttons-dropdown'>

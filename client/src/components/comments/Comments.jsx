@@ -39,7 +39,7 @@ const Comments = ({user,contents}) => {
   //console.log(content);
   const handleDeleteComment = async() => {
     try{
-      await axios.post(`http://localhost:4000/api/comments/delete`, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/comments/delete`, {
         comment_id: comment_id
       });
       alert("Comment Deleted!");

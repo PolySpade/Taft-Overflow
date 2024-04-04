@@ -11,7 +11,7 @@ const Posts_container = ({user}) => {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/posts")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/posts`)
       .then(res => {
         const regularPosts = res.data.filter(post => post.type === 'regular').sort((a, b) => new Date(b.entryDate) - new Date(a.entryDate));
         setPosts(regularPosts);

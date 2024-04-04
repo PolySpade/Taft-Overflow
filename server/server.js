@@ -45,7 +45,7 @@ mongoose.connect(process.env.DB_URI, dbOptions)
     .catch(err => console.log(err))
 
 // Server setup
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 10000
 const server = app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })

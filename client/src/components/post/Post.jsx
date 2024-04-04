@@ -35,7 +35,7 @@ const Post = ({user,contents}) => {
 
 
   const fetchVotes = () => {
-    axios.get(`http://localhost:4000/api/vote/${post_id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/vote/${post_id}`)
       .then(res => {
         const { upvote, downvote } = res.data;
         setUpvote(upvote);
@@ -60,7 +60,7 @@ const Post = ({user,contents}) => {
       voteType: like_type
     };
     //console.log(formData);
-    axios.post(`http://localhost:4000/api/vote`, formData)
+    axios.post(`${process.env.REACT_APP_API_URL}/api/vote`, formData)
       .then(res => {
         //console.log(res.data);
         fetchVotes(); //refresh

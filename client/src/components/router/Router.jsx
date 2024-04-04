@@ -4,7 +4,7 @@ import { BrowserRouter,Routes, Route, Outlet, Navigate } from 'react-router-dom'
 
 import {Header,Footer} from '../../containers/index';
 
-import { Home, Topics, Topic,Posts, Post, Popular, Bookmarks, Courses, Course, Createpost, Profile, Registration, Search_results, Login } from '../../pages/index';
+import { Home, Topics, Topic,Posts, Post, Popular, Bookmarks, Courses, Course, Createpost, Profile, Registration, Search_results, Login, Createcourse } from '../../pages/index';
 
 import './router.css'
 
@@ -15,7 +15,7 @@ const Router = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/current_user')
+        axios.get(`${process.env.REACT_APP_API_URL}/api/current_user`)
           .then(response => {
             const { username, _id } = response.data;
             setUser({ username, _id }); 
@@ -27,7 +27,7 @@ const Router = () => {
     }, []);
 
     const logout = () => {
-        axios.get('http://localhost:4000/api/logout')
+        axios.get(`${process.env.REACT_APP_API_URL}/api/logout`)
           .then(() => {
             setUser(null);
           })
@@ -65,6 +65,11 @@ const Router = () => {
                             path='/createpost'
                             element={user ? <Createpost user={user} /> : <Navigate to='/home' replace />}
                         />
+                        <Route
+                            path='/createcourse'
+                            element={user ? <Createcourse user={user} /> : <Navigate to='/home' replace />}
+                        />
+
                         <Route path='*' element={<Home user={user}/>} />
                         <Route path='/profile/:id' element={<Profile user={user}/>}/>
                         <Route path='/search-results' element={<Search_results user={user}/>}/>

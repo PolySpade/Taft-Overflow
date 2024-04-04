@@ -9,7 +9,7 @@ const Profile_container = ({user}) => {
   const [userr,setUser] = useState([])
 
   useEffect( () => {
-    axios.get("http://localhost:4000/api/users")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/users`)
       .then(res => {
         const filteredUser = res.data.filter(item => item.username === id);
         setUser(filteredUser);

@@ -13,7 +13,7 @@ const Leftsidebar = () => {
 
 
   useEffect( () => {
-    axios.get("http://localhost:4000/api/topics")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/topics`)
       .then(res => {
         setTopics(res.data)
       })
@@ -22,7 +22,7 @@ const Leftsidebar = () => {
 
 
   useEffect( () => {
-    axios.get("http://localhost:4000/api/courses")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/courses`)
       .then(res => {
         setCourses(res.data)
       })

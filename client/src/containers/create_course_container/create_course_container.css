@@ -1,0 +1,21 @@
+.create_course_container__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.create_course_container__container h1{
+    font-family: var(--font-family);
+    color: white;
+    font-size: 40px;
+    font-weight: 1000;
+    margin-bottom: 1rem;
+}
+
+.create_course_container__header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}

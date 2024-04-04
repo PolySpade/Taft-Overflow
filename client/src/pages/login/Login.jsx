@@ -16,7 +16,7 @@ const Login = () => {
         password
     };
     
-    axios.post("http://localhost:4000/api/login", formData, { withCredentials: true })
+    axios.post(`${process.env.REACT_APP_API_URL}/api/login`, formData, { withCredentials: true })
         .then(response => {
             // Handle success
             console.log(response.data);

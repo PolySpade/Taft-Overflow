@@ -9,7 +9,7 @@ const Bookmarks_container = ({user}) => {
   const [post,setPosts] = useState([])
 
   useEffect( () => {
-    axios.get("http://localhost:4000/api/posts")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/posts`)
       .then(res => {
         setPosts(res.data.filter(post => post.type === 'regular'))
       }).catch(err=> console.log(err));

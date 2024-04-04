@@ -16,7 +16,7 @@ const Course_container = ({user}) => {
   //get all courses joined by the user
   // useEffect(() => {
   //   if (user) {
-  //     axios.get(`http://localhost:4000/api/courses/user/${user.username}`)
+  //     axios.get(`${process.env.REACT_APP_API_URL}/api/courses/user/${user.username}`)
   //       .then(res => {
   //         // Assuming the response contains an array of course objects
   //         const joinedCourses = res.data;
@@ -33,7 +33,7 @@ const Course_container = ({user}) => {
   
   const fetchJoined = () =>{
       if (user) {
-        axios.get(`http://localhost:4000/api/courses/user/${user.username}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/courses/user/${user.username}`)
           .then(res => {
             // Assuming the response contains an array of course objects
             const joinedCourses = res.data;
@@ -52,7 +52,7 @@ const Course_container = ({user}) => {
   }, [id, user?.username]);
 
   useEffect( () => {
-    axios.get("http://localhost:4000/api/posts")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/posts`)
       .then(res => {
         const filteredPosts = res.data.filter(post => 
           post.type === 'regular' && post.course_id.name === String(id)
@@ -62,7 +62,7 @@ const Course_container = ({user}) => {
   },[id]);
 
   useEffect( () => {
-    axios.get(`http://localhost:4000/api/courses/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/courses/${id}`)
       .then(res => {
         const { course_id } = res.data;
         setCourseId(course_id);
@@ -75,7 +75,7 @@ const Course_container = ({user}) => {
       course_id: courseId
     };
     console.log(formData);
-    axios.post(`http://localhost:4000/api/join_course`, formData)
+    axios.post(`${process.env.REACT_APP_API_URL}/api/join_course`, formData)
       .then(res => {
         console.log(res.data);
         fetchJoined();

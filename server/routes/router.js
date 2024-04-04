@@ -397,6 +397,48 @@ router.post('/api/posts/update', async (req, res) => {
   }
 });
 
+router.post('/api/courses/add', async(req,res) => {
+    const { course_name } = req.body;
+
+    try{
+      const createSchema = schemas.Courses.create({
+        name: course_name
+      })
+      console.log(course_name)
+      res.status(200).json({ message: `Successfully added${course_name}`})  
+
+    }catch(e){
+      console.log(e);
+      res.status(500).json({ message: `Error adding courses`})
+    }
+});
+
+
+router.post('/api/courses/delete', async(req,res) => {
+  const { course_id } = req.body;
+
+  try{
+    const deleteCourse = await schemas.Courses.deleteOne({
+      _id: new ObjectId(course_id)
+    })
+
+    const deletePosts = await schemas.Posts.deleteMany({
+      course_id: new ObjectId(course_id)
+    })
+
+    const deleteJoined = await schemas.JoinedCourses.deleteMany({
+      course_id: new ObjectId(course_id)
+    })
+
+
+
+    res.status(200).json({ message: `Successfully deleted course`})
+
+  }catch(e){
+    console.log(e);
+  }
+});
+
 
 
 // router.post('/api/login', async (req, res) => {
