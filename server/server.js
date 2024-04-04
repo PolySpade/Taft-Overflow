@@ -17,9 +17,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 const sessionOptions = {
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true, maxAge: 60000*24 }
-}
+    saveUninitialized: false,  // change to false to prevent saving session until something is stored
+    cookie: {
+        secure: 'auto', // or true if you're running over HTTPS
+        maxAge: 60000 * 24, // set your desired max age
+        httpOnly: true,
+        sameSite: 'None' // required with secure: true for cross-origin cookies
+    }
+};
 
 app.use(session(sessionOptions))
 
