@@ -14,22 +14,22 @@ const Course_container = ({user}) => {
   const [isJoined, setIsJoined] = useState(false);
   const [courseId, setCourseId] = useState(null)
   //get all courses joined by the user
-  useEffect(() => {
-    if (user) {
-      axios.get(`http://localhost:4000/api/courses/user/${user.username}`)
-        .then(res => {
-          // Assuming the response contains an array of course objects
-          const joinedCourses = res.data;
-          const course = joinedCourses.find(course => course.course_name === id);
-          if (course) {
-            setIsJoined(true);
-          } else {
-            setIsJoined(false);
-          }
-        })
-        .catch(err => console.log(err));
-    }
-  }, [id, user?.username]);
+  // useEffect(() => {
+  //   if (user) {
+  //     axios.get(`http://localhost:4000/api/courses/user/${user.username}`)
+  //       .then(res => {
+  //         // Assuming the response contains an array of course objects
+  //         const joinedCourses = res.data;
+  //         const course = joinedCourses.find(course => course.course_name === id);
+  //         if (course) {
+  //           setIsJoined(true);
+  //         } else {
+  //           setIsJoined(false);
+  //         }
+  //       })
+  //       .catch(err => console.log(err));
+  //   }
+  // }, [id, user?.username]);
   
   const fetchJoined = () =>{
       if (user) {

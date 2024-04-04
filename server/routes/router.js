@@ -176,12 +176,14 @@ router.get('/api/courses/user/:id', async (req, res) => {
       return res.status(404).send({ message: 'User not found' });
     }
     const userCourses = await schemas['JoinedCourses'].find({ user_id: user_id }).populate('course_id', 'name');
+
+    // Directly return an empty array if no courses are found
     if (!userCourses.length) {
-      console.log('No courses found for user ID:', user_id);
-      return res.status(404).send({ message: 'Courses not found for this user' });
+      return res.json([]); // Return an empty array indicating no courses
     }
+
     const simplifiedUserCourses = userCourses.map(course => ({
-      course_name: course.course_id.name  // Ensure that course_id is populated correctly
+      course_name: course.course_id ? course.course_id.name : 'GENERAL'
     }));
 
     res.json(simplifiedUserCourses);
@@ -190,6 +192,7 @@ router.get('/api/courses/user/:id', async (req, res) => {
     res.status(500).send({ message: 'Error fetching course-user data', error: error.toString() });
   }
 });
+
 
 
 
@@ -272,7 +275,7 @@ router.post('/api/login', (req, res, next) => {
     if (!user) {
       return res.status(401).json({ message: 'Login failed', reason: info.message });
     }
-    req.logIn(user, (loginErr) => {
+    req.login(user, (loginErr) => {
       if (loginErr) {
         return res.status(500).json({ message: loginErr.message });
       }

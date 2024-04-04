@@ -5,6 +5,7 @@ import downvote_none from '../../assets/icons/downvote_none.svg';
 import upvote_none from '../../assets/icons/upvote_none.svg';
 import dropdown from '../../assets/icons/dropdown.svg';
 import pencil_fill from '../../assets/icons/pencil-fill.svg';
+import delete_icon from '../../assets/icons/delete.svg';
 
 export {
     profile,
@@ -13,5 +14,6 @@ export {
     downvote_none,
     upvote_none,
     dropdown,
-    pencil_fill 
+    pencil_fill,
+    delete_icon
 };

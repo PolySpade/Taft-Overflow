@@ -108,7 +108,7 @@ const Create_post = ({user}) => {
                         )
                         }
                     <div>
-                        <p className='create-post-header'>Course</p>
+                        <p className='create-post-header-type'>Course</p>
                         <select id='course' className="course-select" placeholder='Course'>
                             <option value="" disabled selected hidden>Choose a Course...</option>
                             {Courses}

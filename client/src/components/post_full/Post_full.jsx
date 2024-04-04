@@ -1,6 +1,6 @@
 import React, { useEffect, useState }  from 'react'
 import './post_full.css';
-import {profile,dropdown, upvote_highlight,downvote_highlight,downvote_none,upvote_none,pencil_fill} from './imports';
+import {profile,dropdown, upvote_highlight,downvote_highlight,downvote_none,upvote_none,pencil_fill,delete_icon} from './imports';
 import {Link} from 'react-router-dom';
 import {Comments} from '../index';
 import axios from 'axios';
@@ -150,6 +150,10 @@ const Post_full = ( {user,contents}) => {
     setEditMode(true);
   };
 
+  const handleDelete = () => {
+    //setDeleteMode(true);
+  }
+
   const saveEdits = async () => {
     try {
       await axios.post(`http://localhost:4000/api/posts/update`, {
@@ -186,6 +190,7 @@ const Post_full = ( {user,contents}) => {
       </div>
 
       {isOwner && (<button className='post-header__edit-button'type="button" onClick={handleEdit}><img src={pencil_fill}></img></button>)}
+      {isOwner && (<button className='post-header__edit-button'type="button" onClick={handleEdit}><img src={delete_icon}></img></button>)}
       <div className="post-header__vote-buttons">
 
 
