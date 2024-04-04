@@ -5,8 +5,10 @@ const router = require('./routes/router')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const passport = require('passport')
+const path = require('path')
 
 require('dotenv/config') // Loads environment variables from .env file
+
 
 const app = express()
 
@@ -19,10 +21,8 @@ const sessionOptions = {
     resave: false,
     saveUninitialized: false,  // change to false to prevent saving session until something is stored
     cookie: {
-        secure: 'auto', // or true if you're running over HTTPS
+        secure: false, // or true if you're running over HTTPS
         maxAge: 60000 * 24, // set your desired max age
-        httpOnly: true,
-        sameSite: 'None' // required with secure: true for cross-origin cookies
     }
 };
 
@@ -48,6 +48,15 @@ const dbOptions = { useNewUrlParser: true, useUnifiedTopology: true }
 mongoose.connect(process.env.DB_URI, dbOptions)
     .then(() => console.log('DB Connected!'))
     .catch(err => console.log(err))
+
+// Serve static files from the React app build directory
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// The "catchall" handler: for any request that doesn't
+// match one above or in the router, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 // Server setup
 const port = process.env.PORT || 10000
