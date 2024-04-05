@@ -39,7 +39,7 @@ const Leftsidebar = () => {
   return (
     <div className='leftsidebar__container section__padding'>
       <Sidebarbigbuttons imgUrl={home} name='Home' action={'/home'}/>
-      {/* <Sidebarbigbuttons imgUrl={fire} name='Popular' action={'/popular'}/> */}
+      <Sidebarbigbuttons imgUrl={fire} name='Popular' action={'/popular'}/>
       {/* <Sidebarbigbuttons imgUrl={bookmark} name='Bookmarks' action={'/bookmarks'}/> */}
       <Sidebardropdown title='Topics' contents={topics} tag='#' action='/topics/'></Sidebardropdown>
       <div className='rectangleline'></div>

@@ -346,7 +346,7 @@ router.get('/api/vote/:id', async (req, res) => {
   }
 });
 
-router.get('/api/comments/:id', async (req, res) => {
+router.get('/api/comments/post/:id', async (req, res) => {
   const id = req.params.id;
   
   try{
@@ -355,6 +355,24 @@ router.get('/api/comments/:id', async (req, res) => {
     }).populate({
       path: 'user_id',
       select: 'username profile_img'
+    });
+    res.json(comments);
+  }catch(e){
+    res.status(500).json({ message: 'An error occured getting comments'});
+}});
+
+router.get('/api/comments/user/:id', async (req, res) => {
+  const id = req.params.id;
+  const userid = await findObjectID('Users','username',id);
+  try{
+    const comments = await schemas.Comments.find({
+      user_id: new ObjectId(userid)
+    }).populate({
+      path: 'user_id',
+      select: 'username profile_img'
+    }).populate({
+      path: 'post_id',
+      select: 'title _id user_id'
     });
     res.json(comments);
   }catch(e){

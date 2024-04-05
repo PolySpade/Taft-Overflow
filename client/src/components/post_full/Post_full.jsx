@@ -92,7 +92,7 @@ const Post_full = ( {user,contents}) => {
   const fetchComments = async (id) => {
     console.log(`Fetching comments for post ${id}`); 
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/comments/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/comments/post/${id}`);
       if (response.data) {
 
         setComments(response.data);
