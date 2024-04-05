@@ -18,3 +18,16 @@
     font-family: var(--font-family);
     color: white;
 }
+
+.footer__container a{
+    padding-top: 1rem;
+    font-size: 12px;
+    font-family: var(--font-family);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer__container a:hover{
+    color: var(--button-color);
+}

@@ -1,17 +1,17 @@
 import React from 'react'
 
-import { Course_container,Leftsidebar,Rightsidebar } from '../../containers';
+import { Aboutus_container,Leftsidebar,Rightsidebar } from '../../containers';
 
-import './course.css';
+import './aboutus.css';
 
-const Course = ({user}) => {
+const Aboutus = ({user}) => {
   return (
     <div className="course__container-body">
       <Leftsidebar />
-      <Course_container user={user}/>
+      <Aboutus_container user={user}/>
       <Rightsidebar />
     </div>
   )
 }
 
-export default Course
+export default Aboutus

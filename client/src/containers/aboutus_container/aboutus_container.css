@@ -31,8 +31,26 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: left-align;
     width: 100%;
+}
+
+.aboutus_profile{
+    margin-bottom: 1rem;
+}
+
+.aboutus__container p{
+    color: white;
+    font-family: var(--font-family);
+    font-size: 1rem;
+}
+
+.aboutus__container h1{
+    font-family: var(--font-family);
+    color: white;
+    font-size: 40px;
+    font-weight: 1000;
+    margin-bottom: 1rem;
 }
 
 .aboutus_header {
@@ -99,4 +117,49 @@
     font-size: 20px;
     line-height: 30px; 
     vertical-align: middle; 
+}
+
+
+.about-us_container h2 {
+  font-family: var(--font-family);
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.about-us_container p, .about-us_container li {
+  font-family: var(--font-family);
+  line-height: 2;
+}
+
+.contact-us_container, .npm-packages_container {
+  margin-top: 20px;
+}
+
+.contact-us_container a {
+  color: #4ea8de;
+  text-decoration: none;
+}
+
+.contact-us_container a:hover {
+  text-decoration: underline;
+}
+
+.npm-packages_container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.npm-packages_container li {
+  margin-bottom: 5px;
+  color: white;
+}
+
+.npm-packages_container{
+    color: white;
+    font-family: var(--font-family);
+}
+
+.npm-packages_container h1 {
+  color: white;
+  font-family: var(--font-family);
 }

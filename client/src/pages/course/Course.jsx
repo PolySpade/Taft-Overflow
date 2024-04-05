@@ -6,7 +6,7 @@ import './course.css';
 
 const Course = ({user}) => {
   return (
-    <div className="course__container-body">
+    <div className="aboutus__container-body">
       <Leftsidebar />
       <Course_container user={user}/>
       <Rightsidebar />

@@ -4,7 +4,7 @@ import { BrowserRouter,Routes, Route, Outlet, Navigate } from 'react-router-dom'
 
 import {Header,Footer} from '../../containers/index';
 
-import { Home, Topics, Topic,Posts, Post, Popular, Bookmarks, Courses, Course, Createpost, Profile, Registration, Search_results, Login, Createcourse } from '../../pages/index';
+import { Home, Topics, Topic,Posts, Post, Popular, Bookmarks, Courses, Course, Createpost, Profile, Registration, Search_results, Login, Createcourse, Aboutus } from '../../pages/index';
 
 import './router.css'
 
@@ -59,6 +59,7 @@ const Router = () => {
                         <Route path='/posts/:id' element={<Post user={user}/>}/>
                         <Route path='/popular' element={<Popular user={user}/>}/>
                         <Route path='/bookmarks' element={<Bookmarks user={user}/>}/>
+                        <Route path='/aboutus' element={<Aboutus/>}/>
                         <Route path='/courses' element={<Courses/>}/>
                         <Route path='/courses/:id' element={<Course user={user}/>}/>
                         <Route

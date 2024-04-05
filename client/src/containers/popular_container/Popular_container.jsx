@@ -8,12 +8,13 @@ const Popular_container = ({user}) => {
 
   const [post,setPosts] = useState([])
 
-  useEffect( () => {
+  useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/api/posts`)
       .then(res => {
-        setPosts(res.data.filter(post => post.type === 'regular'))
-      }).catch(err=> console.log(err));
-  },[]);
+        const regularPosts = res.data.filter(post => post.type === 'regular').sort((a, b) => new Date(b.entryDate) - new Date(a.entryDate));
+        setPosts(regularPosts);
+      }).catch(err => console.log(err));
+  }, []);
 
   const Popular = post.slice(0,10).map((content, index) =>
     <Post user={user} key={index} contents={content}></Post>
