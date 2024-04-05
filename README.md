@@ -56,11 +56,6 @@ Delete Any Post
 Delete Any Comment
 
 
-## Admin Secret Key
-Username: admin
-Password: authorized1234
-
-
 ## Contact
 Darylle Xander A. Calugtong |  
 darylle_calugtong@dlsu.edu.ph |  
