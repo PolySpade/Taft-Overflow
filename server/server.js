@@ -50,12 +50,12 @@ mongoose.connect(process.env.DB_URI, dbOptions)
     .catch(err => console.log(err))
 
 // Serve static files from the React app build directory
-app.use(express.static(process.cwd(),'client','build'));
+app.use(express.static(path.join(process.cwd(),'client','build')));
 
 // The "catchall" handler: for any request that doesn't
 // match one above or in the router, send back React's index.html file.
 app.get('*', (req, res) => {
-  res.sendFile(process.cwd(),'client','build','index.html');
+  res.sendFile(path.join(process.cwd(),'client','build','index.html'));
 });
 //path.join(__dirname, '../client/build/index.html')
 //process.cwd(),'client','build','index.html'
