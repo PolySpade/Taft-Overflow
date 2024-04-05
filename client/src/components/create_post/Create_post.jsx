@@ -117,7 +117,7 @@ const Create_post = ({user}) => {
                 </div>
             <div className='form-group-column'>
                 <p className='create-post-topic'>Content:</p>
-                <textarea id='content' className="text-input" placeholder="Write a something..." />
+                <textarea id='content' className="text-input" placeholder="Write something..." />
 
                 <p className='create-post-topic'>Enter topics in the format [#topic] Example:"#dlsu #id120"</p>
                 <div className="topic-input-container">

@@ -5,7 +5,7 @@ import axios from 'axios';
 const Profile_recents = ({user, id}) => {
   const [posts, setPosts] = useState([]);
   const [comments,setComments] = useState([])
-  useEffect(() => {
+  useEffect(() => { 
     axios.get(`${process.env.REACT_APP_API_URL}/api/posts`)
       .then(res => {
         const regularPosts = res.data.filter(post => post.user_id.username === id).sort((a, b) => new Date(b.entryDate) - new Date(a.entryDate));
