@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import './course_container.css';
+import './aboutus_container.css';
 //import {Post} from '../../components/index';
 import axios from 'axios';
 import {useParams} from 'react-router-dom'
 import {Post} from '../../components/index';
-import course_cover from '../../assets/images/csarch1cover.jpg';
-import course_picture from '../../assets/images/csarch1logo.png';
+import aboutus_cover from '../../assets/images/csarch1cover.jpg';
+import aboutus_picture from '../../assets/images/csarch1logo.png';
 
 
-const Course_container = ({user}) => {
+const Aboutus_container = ({user}) => {
   const {id} = useParams();
   const [posts,setPosts] = useState([])
   const [isJoined, setIsJoined] = useState(false);
-  const [courseId, setCourseId] = useState(null)
-  //get all courses joined by the user
+  const [aboutusId, setAboutusId] = useState(null)
+  //get all aboutuss joined by the user
   // useEffect(() => {
   //   if (user) {
-  //     axios.get(`${process.env.REACT_APP_API_URL}/api/courses/user/${user.username}`)
+  //     axios.get(`${process.env.REACT_APP_API_URL}/api/aboutuss/user/${user.username}`)
   //       .then(res => {
-  //         // Assuming the response contains an array of course objects
-  //         const joinedCourses = res.data;
-  //         const course = joinedCourses.find(course => course.course_name === id);
-  //         if (course) {
+  //         // Assuming the response contains an array of aboutus objects
+  //         const joinedAboutuss = res.data;
+  //         const aboutus = joinedAboutuss.find(aboutus => aboutus.aboutus_name === id);
+  //         if (aboutus) {
   //           setIsJoined(true);
   //         } else {
   //           setIsJoined(false);
@@ -33,12 +33,12 @@ const Course_container = ({user}) => {
   
   const fetchJoined = () =>{
       if (user) {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/courses/user/${user.username}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/aboutuss/user/${user.username}`)
           .then(res => {
-            // Assuming the response contains an array of course objects
-            const joinedCourses = res.data;
-            const course = joinedCourses.find(course => course.course_name === id);
-            if (course) {
+            // Assuming the response contains an array of aboutus objects
+            const joinedAboutuss = res.data;
+            const aboutus = joinedAboutuss.find(aboutus => aboutus.aboutus_name === id);
+            if (aboutus) {
               setIsJoined(true);
             } else {
               setIsJoined(false);
@@ -55,27 +55,27 @@ const Course_container = ({user}) => {
     axios.get(`${process.env.REACT_APP_API_URL}/api/posts`)
       .then(res => {
         const filteredPosts = res.data.filter(post => 
-          post.type === 'regular' && post.course_id.name === String(id)
+          post.type === 'regular' && post.aboutus_id.name === String(id)
         );
         setPosts(filteredPosts);
       }).catch(err=> console.log(err));
   },[id]);
 
   useEffect( () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/courses/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/aboutuss/${id}`)
       .then(res => {
-        const { course_id } = res.data;
-        setCourseId(course_id);
+        const { aboutus_id } = res.data;
+        setAboutusId(aboutus_id);
       }).catch(err=> console.log(err));
   },[id]);
 
   const join = () => {
     const formData = {
       user_id: user._id,
-      course_id: courseId
+      aboutus_id: aboutusId
     };
     console.log(formData);
-    axios.post(`${process.env.REACT_APP_API_URL}/api/join_course`, formData)
+    axios.post(`${process.env.REACT_APP_API_URL}/api/join_aboutus`, formData)
       .then(res => {
         console.log(res.data);
         fetchJoined();
@@ -90,14 +90,14 @@ const Course_container = ({user}) => {
 
   return (
     
-      <div className='course__container section__padding'>
-      <div className='course_header'>
-        <div className="course_header__cover-photo" style={{ backgroundImage: `url(${course_cover})` }}></div>
-        <div className="course_header__profile-container">
-        <div className="course_header__course-picture" style={{ backgroundImage: `url(${course_picture})` }}></div>
-          <div className="course_header__profilecontainer">
-            <div className="course_header__course-name">c/{id}</div>
-            <button className="course_header__right-button" disabled={!user} onClick={join} >
+      <div className='aboutus__container section__padding'>
+      <div className='aboutus_header'>
+        <div className="aboutus_header__cover-photo" style={{ backgroundImage: `url(${aboutus_cover})` }}></div>
+        <div className="aboutus_header__profile-container">
+        <div className="aboutus_header__aboutus-picture" style={{ backgroundImage: `url(${aboutus_picture})` }}></div>
+          <div className="aboutus_header__profilecontainer">
+            <div className="aboutus_header__aboutus-name">c/{id}</div>
+            <button className="aboutus_header__right-button" disabled={!user} onClick={join} >
               {isJoined ? 'Joined' : 'Join'}
             </button>
           </div>
@@ -110,4 +110,4 @@ const Course_container = ({user}) => {
   )
 }
 
-export default Course_container
+export default Aboutus_container

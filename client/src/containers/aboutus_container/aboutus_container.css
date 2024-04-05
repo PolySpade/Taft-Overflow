@@ -1,4 +1,4 @@
-/* .course__container{
+/* .aboutus__container{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -6,7 +6,7 @@
 }
 
 
-.course__container h1{
+.aboutus__container h1{
     font-family: var(--font-family);
     color: white;
     font-size: 40px;
@@ -14,7 +14,7 @@
     margin-bottom: 1rem;
 }
 
-.course__container a{
+.aboutus__container a{
     text-decoration: none;
     font-family: var(--font-family);
     color: white;
@@ -23,11 +23,11 @@
     margin: 1rem 0rem;
 }
 
-.course__container a:hover{
+.aboutus__container a:hover{
     color: var(--button-color);
 } */
 
-.course__container {
+.aboutus__container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -35,7 +35,7 @@
     width: 100%;
 }
 
-.course_header {
+.aboutus_header {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -43,11 +43,11 @@
     width: 100%;
 }
 
-.course_header__profile-container {
+.aboutus_header__profile-container {
     display: flex;
 }
 
-.course_header__cover-photo {
+.aboutus_header__cover-photo {
     width: 100%;
     height: 250px;
     background-size: cover;
@@ -56,7 +56,7 @@
     border-radius: 20px;
 }
 
-.course_header__course-picture {
+.aboutus_header__aboutus-picture {
     width: 233px;
     height: 233px;
     border-radius: 50%;
@@ -67,12 +67,12 @@
     border: 3px solid white;
 }
 
-.course_header__profilecontainer{
+.aboutus_header__profilecontainer{
     display: flex;
     align-items: center;
 }
 
-.course_header__course-name {
+.aboutus_header__aboutus-name {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 800;
@@ -82,7 +82,7 @@
     color: #FFFFFF;
 }
 
-.course_header__right-button{
+.aboutus_header__right-button{
     margin-left: 1rem;
     display: inline-block;
     padding: 0px 17px;
