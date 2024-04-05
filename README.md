@@ -16,6 +16,9 @@ Taft Overflow is designed to be user-friendly and accessible to everyone, whethe
 ### Viewing Posts
 - **No account needed**: Browse and view posts from different courses and topics without needing to sign up.
 
+### Viewing Profiles
+- **Explore user contributions**: View the profiles of other members to see their posts and comments, giving you insight into their activity and contributions to the community.
+
 ### Signing Up
 - **Access full features**: To engage fully with Taft Overflow, sign up for an account. This enables you to participate actively in the community.
 
@@ -31,26 +34,27 @@ Taft Overflow is designed to be user-friendly and accessible to everyone, whethe
 By following these steps, you’ll be able to navigate Taft Overflow effectively.
 
 ## User Features
-Account Creation  
-Post Creation  
-Post Editing (User's Post Only) 
-Post Deletion (User's Post Only) 
-Upvoting  
-Downvoting  
-Commenting  
-Comment Deletion (User's Post Only) 
-Upload Profile Photo
+Create Account
+Create Post
+Edit Own Post
+Delete Own Post
+Upvote
+Downvote
+Comment
+Delete Own Comment
+Upload Profile Picture
 Add Topics
-Join Courses  
-Leave Courses  
+Enroll in Course
+Withdraw from Course
 View Announcements
-Use Search Bar
-
+Use Search Function
 ## Admin Additional Features
-Add Courses
-Post Editing (Global)
-Post Deletion (Global)
-Comment Deletion (Global)
+Create Announcement
+Create Course
+Edit Any Post
+Delete Any Post
+Delete Any Comment
+
 
 ## Admin Secret Key
 Username: admin
