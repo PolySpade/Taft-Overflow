@@ -76,23 +76,29 @@ xu_xu@dlsu.edu.ph |
 
 ## NPM Packages  
 ### Client side:  
-"@testing-library/jest-dom": "^5.17.0"  
-"@testing-library/react": "^13.4.0"  
-"@testing-library/user-event": "^13.5.0"  
-"axios": "^1.6.7"  
-"draft-js": "^0.11.7"  
-"react": "^18.2.0"  
-"react-dom": "^18.2.0"  
-"react-icons": "^5.0.1"  
-"react-router-dom": "^6.22.3"  
-"react-scripts": "5.0.1"  
-"web-vitals": "^2.1.4"  
+    "axios": "^1.6.7",
+    "compressorjs": "^1.2.1",
+    "dotenv": "^16.4.5",
+    "draft-js": "^0.11.7",
+    "express": "^4.18.3",
+    "express-fileupload": "^1.4.3",
+    "hbs": "^4.2.0",
+    "mongoose": "^8.2.1",
+    "nodemon": "^3.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
+    "react-router-dom": "^6.22.3",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^2.1.4"
 ### Server side:  
-"body-parser": "^1.20.2"  
-"cors": "^2.8.5"  
-"dotenv": "^16.4.5"  
-"express": "^4.18.3"  
-"express-fileupload": "^1.4.3"  
-"hbs": "^4.2.0"  
-"mongoose": "^8.2.1"  
-"nodemon": "^3.1.0"  
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.2.1",
+    "nodemon": "^3.1.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
