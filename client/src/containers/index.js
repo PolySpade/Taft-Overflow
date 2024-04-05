@@ -14,3 +14,4 @@ export { default as Create_post_container} from './create_post_container/Create_
 export { default as Profile_container} from './profile_container/Profile_container';
 export { default as Search_results_container} from './search_results_container/Search_results_container';
 export { default as Create_course_container} from './create_course_container/Create_course_container';
+export { default as Aboutus_container} from './aboutus_container/Aboutus_container';

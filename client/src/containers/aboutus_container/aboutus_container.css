@@ -1,0 +1,102 @@
+/* .course__container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+
+.course__container h1{
+    font-family: var(--font-family);
+    color: white;
+    font-size: 40px;
+    font-weight: 1000;
+    margin-bottom: 1rem;
+}
+
+.course__container a{
+    text-decoration: none;
+    font-family: var(--font-family);
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 1rem 0rem;
+}
+
+.course__container a:hover{
+    color: var(--button-color);
+} */
+
+.course__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.course_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.course_header__profile-container {
+    display: flex;
+}
+
+.course_header__cover-photo {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.course_header__course-picture {
+    width: 233px;
+    height: 233px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-top: -15%;
+    margin-left: 1.5rem;
+    border: 3px solid white;
+}
+
+.course_header__profilecontainer{
+    display: flex;
+    align-items: center;
+}
+
+.course_header__course-name {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 54px; 
+    margin-left: 20px;
+    color: #FFFFFF;
+}
+
+.course_header__right-button{
+    margin-left: 1rem;
+    display: inline-block;
+    padding: 0px 17px;
+    border: none;
+    width: 100px;
+    max-width: 100px;
+    height: 30px;
+    cursor: pointer;
+    background: #4ECCA3;
+    border-radius: 75px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 30px; 
+    vertical-align: middle; 
+}
